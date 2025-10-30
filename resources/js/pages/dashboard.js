@@ -4,20 +4,27 @@
  * Module/App: Dashboard
  */
 
+// Global flag to prevent multiple initializations
+window.dashboardChartsInitialized = false;
+
+// Chart instances storage
+window.dashboardChartInstances = {};
+
 // Check if ApexCharts is available globally or import it
 let ApexCharts;
 
 // Try to use globally available ApexCharts first
 if (typeof window.ApexCharts !== 'undefined') {
     ApexCharts = window.ApexCharts;
+    initializeDashboard();
 } else {
     // Fallback: try to import dynamically
     import('apexcharts').then(module => {
         ApexCharts = module.default;
-        initAllCharts();
+        window.ApexCharts = ApexCharts; // Make it globally available
+        initializeDashboard();
     }).catch(error => {
         console.error('Failed to load ApexCharts:', error);
-        // Show error messages in chart containers
         showChartErrors();
     });
 }
@@ -35,23 +42,25 @@ if (typeof window.Apex === 'undefined') {
     };
 }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        if (ApexCharts) {
-            initAllCharts();
-        } else {
-            // Wait a bit for ApexCharts to load
-            setTimeout(initAllCharts, 500);
-        }
-    });
-} else {
-    // DOM already loaded
-    setTimeout(initAllCharts, 100);
+function initializeDashboard() {
+    // Use a single DOMContentLoaded listener
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDashboardOnce);
+    } else {
+        // DOM already loaded
+        setTimeout(initDashboardOnce, 100);
+    }
 }
 
-function initAllCharts() {
+function initDashboardOnce() {
+    // Prevent multiple initializations
+    if (window.dashboardChartsInitialized) {
+        console.log('⚠️ Dashboard charts already initialized, skipping...');
+        return;
+    }
+    
     console.log('🚀 Initializing CureOS Dashboard Charts...');
+    window.dashboardChartsInitialized = true;
     
     // Remove loading messages
     removeLoadingMessages();
@@ -69,7 +78,9 @@ function initAllCharts() {
 function removeLoadingMessages() {
     const loadingElements = document.querySelectorAll('.chart-loading');
     loadingElements.forEach(element => {
-        element.remove();
+        if (element.parentNode) {
+            element.remove();
+        }
     });
 }
 
@@ -83,13 +94,30 @@ function showChartErrors() {
     
     chartContainers.forEach(containerId => {
         const container = document.querySelector(containerId);
-        if (container) {
-            container.innerHTML = '<div class="chart-loading" style="color: #dc2626;">Chart Error - Check Console</div>';
+        if (container && !container.querySelector('.chart-error')) {
+            container.innerHTML = '<div class="chart-error" style="color: #dc2626; text-align: center; padding: 20px;">Chart Loading Error</div>';
         }
     });
 }
 
+function destroyExistingCharts() {
+    // Destroy any existing chart instances
+    Object.values(window.dashboardChartInstances).forEach(chart => {
+        if (chart && typeof chart.destroy === 'function') {
+            try {
+                chart.destroy();
+            } catch (e) {
+                console.warn('Error destroying chart:', e);
+            }
+        }
+    });
+    window.dashboardChartInstances = {};
+}
+
 function initMainCharts() {
+    // Destroy any existing charts first
+    destroyExistingCharts();
+    
     // 1. Enrollment Chart (Earning Statistic)
     initEnrollmentChart();
     
@@ -110,6 +138,11 @@ function initEnrollmentChart() {
         return;
     }
 
+    // Clear existing content but keep structure
+    if (element.querySelector('.apexcharts-canvas')) {
+        element.innerHTML = '';
+    }
+
     const options = {
         series: [
             {
@@ -125,7 +158,8 @@ function initEnrollmentChart() {
             type: "area",
             height: 350,
             toolbar: { show: false },
-            zoom: { enabled: false }
+            zoom: { enabled: false },
+            id: 'enrollment'
         },
         dataLabels: { enabled: false },
         stroke: {
@@ -170,6 +204,7 @@ function initEnrollmentChart() {
     try {
         const chart = new ApexCharts(element, options);
         chart.render();
+        window.dashboardChartInstances.enrollment = chart;
         console.log('✅ Enrollment chart rendered');
     } catch (error) {
         console.error('❌ Enrollment chart error:', error);
@@ -183,11 +218,17 @@ function initRadialBarChart() {
         return;
     }
 
+    // Clear existing content
+    if (element.querySelector('.apexcharts-canvas')) {
+        element.innerHTML = '';
+    }
+
     const options = {
         series: [80, 40, 10],
         chart: {
             height: 280,
-            type: "radialBar"
+            type: "radialBar",
+            id: 'radial'
         },
         plotOptions: {
             radialBar: {
@@ -216,6 +257,7 @@ function initRadialBarChart() {
     try {
         const chart = new ApexCharts(element, options);
         chart.render();
+        window.dashboardChartInstances.radial = chart;
         console.log('✅ Radial bar chart rendered');
     } catch (error) {
         console.error('❌ Radial bar chart error:', error);
@@ -227,6 +269,11 @@ function initPaymentStatusChart() {
     if (!element) {
         console.warn('Payment status chart element not found');
         return;
+    }
+
+    // Clear existing content
+    if (element.querySelector('.apexcharts-canvas')) {
+        element.innerHTML = '';
     }
 
     const options = {
@@ -243,7 +290,8 @@ function initPaymentStatusChart() {
         chart: {
             type: "line",
             height: 300,
-            toolbar: { show: false }
+            toolbar: { show: false },
+            id: 'payment'
         },
         stroke: {
             width: [3, 3],
@@ -280,6 +328,7 @@ function initPaymentStatusChart() {
     try {
         const chart = new ApexCharts(element, options);
         chart.render();
+        window.dashboardChartInstances.payment = chart;
         console.log('✅ Payment status chart rendered');
     } catch (error) {
         console.error('❌ Payment status chart error:', error);
@@ -293,11 +342,17 @@ function initDonutChart() {
         return;
     }
 
+    // Clear existing content
+    if (element.querySelector('.apexcharts-canvas')) {
+        element.innerHTML = '';
+    }
+
     const options = {
-        series: [28500, 21500], // $28,500 income + remaining to $50,000
+        series: [28500, 21500],
         chart: {
             type: "donut",
-            height: 250
+            height: 250,
+            id: 'donut'
         },
         colors: ["#ffbc00", "#47ad77"],
         labels: ["Current Income", "Remaining"],
@@ -331,19 +386,13 @@ function initDonutChart() {
             }
         },
         dataLabels: { enabled: false },
-        legend: { show: false },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                chart: { height: 200 },
-                legend: { position: "bottom" }
-            }
-        }]
+        legend: { show: false }
     };
 
     try {
         const chart = new ApexCharts(element, options);
         chart.render();
+        window.dashboardChartInstances.donut = chart;
         console.log('✅ Donut chart rendered');
     } catch (error) {
         console.error('❌ Donut chart error:', error);
@@ -361,6 +410,11 @@ function initMiniChart(elementId, data) {
     if (!element) {
         console.warn(`Mini chart ${elementId} not found`);
         return;
+    }
+
+    // Clear existing mini chart
+    if (element.querySelector('.apexcharts-canvas')) {
+        element.innerHTML = '';
     }
 
     const options = {
@@ -389,21 +443,22 @@ function initMiniChart(elementId, data) {
     try {
         const chart = new ApexCharts(element, options);
         chart.render();
+        window.dashboardChartInstances[elementId] = chart;
     } catch (error) {
         console.error(`Mini chart ${elementId} error:`, error);
     }
 }
 
-// Handle window resize for responsiveness
-let resizeTimer;
-window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-        console.log('Window resized - charts should auto-adjust');
-    }, 250);
+// Cleanup on page unload (important for SPAs)
+window.addEventListener('beforeunload', function() {
+    destroyExistingCharts();
+    window.dashboardChartsInitialized = false;
 });
 
 // Export for module usage if needed
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initAllCharts };
+    module.exports = { 
+        initDashboardOnce,
+        destroyExistingCharts 
+    };
 }
