@@ -1,6 +1,6 @@
 <div class="app-menu">
 
-    <a href="{{route('any', 'index')}}" class="logo-box">
+    <a href="{{route('any', 'index')}}" class="logo-box border-b border-gray-200 dark:border-gray-700">
         <!-- Light Logo -->
         <div class="logo-light">
             <img src="/images/logo.png" class="logo-lg h-[22px]" alt="Light logo">

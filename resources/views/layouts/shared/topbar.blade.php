@@ -31,25 +31,30 @@
             <span class="ri-search-line text-base z-10 absolute start-2 top-1/2 -translate-y-1/2"></span>
         </form>
 
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 mt-3.5 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 mt-3.5 transition-all duration-300 bg-white border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
 
             <!-- item-->
-            <h5 class="flex items-center py-2 px-3 text-sm text-gray-800 dark:text-gray-400 uppercase">Found <b class="text-decoration-underline">08</b> results</h5>
+            <h5 class="flex items-center py-2 px-3 text-sm text-gray-800 dark:text-gray-400 uppercase">Found <b
+                    class="text-decoration-underline">08</b> results</h5>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-file-chart-line text-base me-1"></i>
                 <span>Analytics Report</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-lifebuoy-line text-base me-1"></i>
                 <span>How can I help you?</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-user-settings-line text-base me-1"></i>
                 <span>User profile settings</span>
             </a>
@@ -58,7 +63,8 @@
             <h6 class="flex items-center py-2 px-3 text-sm text-gray-800 dark:text-gray-400 uppercase">Users</h6>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img class="me-2 rounded-full h-8" src="/images/users/avatar-2.jpg" alt="Generic placeholder image">
                 <div class="flex-grow">
                     <h5 class="m-0 fs-14">Erwin Brown</h5>
@@ -67,7 +73,8 @@
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img class="me-2 rounded-full h-8" src="/images/users/avatar-5.jpg" alt="Generic placeholder image">
                 <div class="flex-grow">
                     <h5 class="m-0 fs-14">Jacob Deo</h5>
@@ -90,27 +97,32 @@
         </button>
 
 
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg py-2">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg py-2">
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/germany.jpg" alt="user-image" class="h-4">
                 <span class="align-middle">German</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/italy.jpg" alt="user-image" class="h-4">
                 <span class="align-middle">Italian</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/spain.jpg" alt="user-image" class="h-4">
                 <span class="align-middle">Spanish</span>
             </a>
 
             <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="javascript:void(0);"
+                class="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/russia.jpg" alt="user-image" class="h-4">
                 <span class="align-middle">Russian</span>
             </a>
@@ -126,7 +138,8 @@
                 <span class="absolute top-5 end-2.5 w-2 h-2 rounded-full bg-danger"></span>
             </span>
         </button>
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
 
             <div class="p-3 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-between">
@@ -142,15 +155,18 @@
                 <h5 class="text-xs text-gray-500 dark:text-gray-200 px-4 mb-2">Today</h5>
 
                 <a href="javascript:void(0);" class="block mb-4">
-                    <div class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <div
+                        class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
-                                <div class="flex justify-center items-center h-9 w-9 rounded-full bg text-white bg-primary">
+                                <div
+                                    class="flex justify-center items-center h-9 w-9 rounded-full bg text-white bg-primary">
                                     <i class="ri-message-3-line text-lg"></i>
                                 </div>
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Datacorp <small class="font-normal ms-1">1 min ago</small></h5>
+                                <h5 class="text-sm font-semibold mb-1">Datacorp <small class="font-normal ms-1">1 min
+                                        ago</small></h5>
                                 <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
                             </div>
                         </div>
@@ -158,7 +174,8 @@
                 </a>
 
                 <a href="javascript:void(0);" class="block mb-4">
-                    <div class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <div
+                        class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <div class="flex justify-center items-center h-9 w-9 rounded-full bg-info text-white">
@@ -166,7 +183,8 @@
                                 </div>
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Admin <small class="font-normal ms-1">1 hr ago</small></h5>
+                                <h5 class="text-sm font-semibold mb-1">Admin <small class="font-normal ms-1">1 hr
+                                        ago</small></h5>
                                 <small class="noti-item-subtitle text-muted">New user registered</small>
                             </div>
                         </div>
@@ -174,14 +192,17 @@
                 </a>
 
                 <a href="javascript:void(0);" class="block mb-4">
-                    <div class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <div
+                        class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img src="/images/users/avatar-2.jpg" class="rounded-full h-9 w-9" alt="">
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small class="font-normal ms-1">1 day ago</small></h5>
-                                <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small class="font-normal ms-1">1
+                                        day ago</small></h5>
+                                <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next
+                                    meeting</small>
                             </div>
                         </div>
                     </div>
@@ -190,10 +211,12 @@
                 <h5 class="text-xs text-gray-500 dark:text-gray-200 px-4 mb-2">Yesterday</h5>
 
                 <a href="javascript:void(0);" class="block mb-4">
-                    <div class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <div
+                        class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
-                                <div class="flex justify-center items-center h-9 w-9 rounded-full bg-primary text-white">
+                                <div
+                                    class="flex justify-center items-center h-9 w-9 rounded-full bg-primary text-white">
                                     <i class="ri-discuss-line text-lg"></i>
                                 </div>
                             </div>
@@ -206,21 +229,24 @@
                 </a>
 
                 <a href="javascript:void(0);" class="block">
-                    <div class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <div
+                        class="py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img src="/images/users/avatar-4.jpg" class="rounded-full h-9 w-9" alt="">
                             </div>
                             <div class="flex-grow truncate ms-2">
                                 <h5 class="text-sm font-semibold mb-1">Karen Robinson</h5>
-                                <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome design</small>
+                                <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome
+                                    design</small>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <a href="javascript:void(0);" class="p-2 border-t border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
+            <a href="javascript:void(0);"
+                class="p-2 border-t border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
                 View All
             </a>
         </div>
@@ -234,34 +260,41 @@
                 <i class="ri-apps-2-line text-2xl"></i>
             </span>
         </button>
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 transition-all duration-300 bg-white border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
             <div class="grid grid-cols-3 gap-3">
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/github.png" class="h-6" alt="Github">
                     <span>GitHub</span>
                 </a>
 
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/bitbucket.png" class="h-6" alt="bitbucket">
                     <span>Bitbucket</span>
                 </a>
 
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/dropbox.png" class="h-6" alt="dropbox">
                     <span>Dropbox</span>
                 </a>
 
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/slack.png" class="h-6" alt="slack">
                     <span>Slack</span>
                 </a>
 
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/dribbble.png" class="h-6" alt="dribbble">
                     <span>Dribbble</span>
                 </a>
 
-                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="flex flex-col items-center justify-center gap-1.5 py-3 px-6 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    href="#">
                     <img src="/images/brands/behance.png" class="h-6" alt="Behance">
                     <span>Behance</span>
                 </a>
@@ -302,47 +335,56 @@
 
     <!-- Profile Dropdown Button -->
     <div class="relative">
-        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
+        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
+            class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
             <img src="/images/users/avatar-1.jpg" alt="user-image" class="rounded-full h-8">
             <span class="md:flex flex-col gap-0.5 text-start hidden">
-                <h5 class="text-sm">Tosha Minner</h5>
-                <span class="text-xs">Founder</span>
+                <h5 class="text-sm">{{ $userName }}</h5>
+                <span class="text-xs">{{ $userRoles->first() }}</span>
             </span>
         </button>
 
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+            
             <!-- item-->
-            <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">Welcome !</h6>
-
-            <!-- item-->
-            <a href="{{ route('second', ['pages', 'profile']) }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="{{ route('second', ['pages', 'profile']) }}"
+                class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-account-circle-line text-lg align-middle"></i>
                 <span>My Account</span>
             </a>
 
             <!-- item-->
-            <a href="{{ route('second', ['pages', 'profile']) }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="{{ route('second', ['pages', 'profile']) }}"
+                class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-settings-4-line text-lg align-middle"></i>
                 <span>Settings</span>
             </a>
 
             <!-- item-->
-            <a href="{{ route('second', ['pages', 'faqs']) }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="{{ route('second', ['pages', 'faqs']) }}"
+                class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-customer-service-2-line text-lg align-middle"></i>
                 <span>Support</span>
             </a>
 
             <!-- item-->
-            <a href="{{ route('second', ['auth', 'lock-screen'])}}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="{{ route('second', ['auth', 'lock-screen'])}}"
+                class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-lock-password-line text-lg align-middle"></i>
                 <span>Lock Screen</span>
             </a>
-
+            @auth
             <!-- item-->
-            <a href="{{ route('second', ['auth', 'logout-2'])}}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-logout-box-line text-lg align-middle"></i>
-                <span>Logout</span>
-            </a>
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                @csrf
+                <button
+                    class="w-full flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                    <i class="ri-logout-box-line text-lg align-middle"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+            @endauth
         </div>
     </div>
 </header>

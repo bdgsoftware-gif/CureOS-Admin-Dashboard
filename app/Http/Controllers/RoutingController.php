@@ -14,9 +14,9 @@ class RoutingController extends BaseController
 
     public function __construct()
     {
-        // $this->
-        // middleware('auth')->
-        // except('index');
+        $this->
+        middleware('auth')->
+        except('index');
     }
 
     /**

@@ -12,8 +12,22 @@
         #radialMultipleBar, 
         #paymentStatusChart, 
         #statisticsDonutChart {
-            min-height: 300px;
             width: 100%;
+        }
+        
+        /* Ensure chart containers are visible */
+        .apexcharts-canvas {
+            width: 100% !important;
+        }
+        
+        /* Fix for loading states */
+        .chart-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
+            font-size: 14px;
         }
     </style>
 @endsection
@@ -31,6 +45,7 @@
                     'color' => 'from-rose-500 to-pink-600',
                     'icon' => 'ri-user-line',
                     'chart' => true,
+                    'chartId' => 'mini-customers-chart'
                 ],
                 [
                     'title' => 'Orders',
@@ -41,6 +56,7 @@
                     'color' => 'from-emerald-500 to-green-600',
                     'icon' => 'ri-shopping-bag-line',
                     'chart' => true,
+                    'chartId' => 'mini-orders-chart'
                 ],
                 [
                     'title' => 'Revenue',
@@ -51,6 +67,7 @@
                     'color' => 'from-sky-500 to-blue-600',
                     'icon' => 'ri-bank-card-line',
                     'chart' => true,
+                    'chartId' => 'mini-revenue-chart'
                 ],
                 [
                     'title' => 'Growth',
@@ -105,10 +122,8 @@
 
                             <!-- Mini chart or progress indicator -->
                             @if ($card['chart'])
-                                <div class="flex space-x-1">
-                                    @foreach ([60, 45, 75, 30, 90, 50, 70] as $height)
-                                        <div class="w-1 bg-white/30 rounded-full" style="height: {{ $height / 4 }}px"></div>
-                                    @endforeach
+                                <div class="w-20 h-8 flex items-center justify-center">
+                                    <div id="{{ $card['chartId'] }}"></div>
                                 </div>
                             @else
                                 <div class="w-16 bg-white/20 rounded-full h-1.5">
@@ -128,13 +143,13 @@
         @endforeach
     </div>
 
-    {{-- Fixed Section Below --}}
+    {{-- Main Dashboard Content --}}
     
     <div class="grid grid-cols-1 3xl:grid-cols-12 gap-6">
         <div class="col-span-12 3xl:col-span-9">
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-6">
 
-                <!-- Earning Statistic - FIXED -->
+                <!-- Earning Statistic -->
                 <div class="col-span-12 2xl:col-span-12">
                     <div class="card border-0 h-full">
                         <div class="card-header">
@@ -164,17 +179,14 @@
                                     </span>
                                 </li>
                             </ul>
-                            <div id="enrollmentChart" class="w-full" style="min-height: 350px;">
-                                <!-- Chart will be initialized by JavaScript -->
-                                <div class="flex items-center justify-center h-full text-gray-500">
-                                    Loading chart...
-                                </div>
+                            <div id="enrollmentChart" style="min-height: 350px;">
+                                <div class="chart-loading">Loading enrollment chart...</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Patient Visited by Department - FIXED -->
+                <!-- Patient Visited by Department -->
                 <div class="col-span-12 lg:col-span-6">
                     <div class="card border-0 h-full">
                         <div class="card-header">
@@ -183,11 +195,8 @@
                             </div>
                         </div>
                         <div class="p-6 flex flex-col lg:flex-row items-center gap-4">
-                            <div id="radialMultipleBar" class="w-full lg:w-1/2" style="min-height: 200px;">
-                                <!-- Radial chart container -->
-                                <div class="flex items-center justify-center h-full text-gray-500">
-                                    Loading radial chart...
-                                </div>
+                            <div id="radialMultipleBar" style="min-height: 250px; width: 100%;">
+                                <div class="chart-loading">Loading department chart...</div>
                             </div>
                             <ul class="flex flex-col gap-3 w-full lg:w-1/2">
                                 <li class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
@@ -207,7 +216,7 @@
                     </div>
                 </div>
 
-                <!-- Patient Visit By Gender - FIXED -->
+                <!-- Patient Visit By Gender -->
                 <div class="col-span-12 lg:col-span-6">
                     <div class="card border-0 h-full">
                         <div class="card-header">
@@ -237,17 +246,14 @@
                                     </span>
                                 </li>
                             </ul>
-                            <div id="paymentStatusChart" class="w-full" style="min-height: 300px;">
-                                <!-- Chart container -->
-                                <div class="flex items-center justify-center h-full text-gray-500">
-                                    Loading gender chart...
-                                </div>
+                            <div id="paymentStatusChart" style="min-height: 300px;">
+                                <div class="chart-loading">Loading gender chart...</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Doctors List - FIXED -->
+                <!-- Doctors List -->
                 <div class="col-span-12 2xl:col-span-4">
                     <div class="card border-0">
                         <div class="card-header border-bottom">
@@ -276,11 +282,7 @@
                                 <div class="flex items-center justify-between gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
                                     <div class="flex items-center">
                                         <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 me-3 overflow-hidden">
-                                            @if(file_exists(public_path('assets/images/home-eight/' . $doctor['img'])))
-                                                <img src="{{ asset('assets/images/home-eight/' . $doctor['img']) }}" alt="{{ $doctor['name'] }}" class="w-full h-full object-cover">
-                                            @else
-                                                <i class="ri-user-line text-gray-400 text-xl"></i>
-                                            @endif
+                                            <i class="ri-user-line text-gray-400 text-xl"></i>
                                         </div>
                                         <div>
                                             <h6 class="text-base mb-0 font-semibold">{{ $doctor['name'] }}</h6>
@@ -297,7 +299,7 @@
                     </div>
                 </div>
 
-                <!-- Latest Appointments - FIXED -->
+                <!-- Latest Appointments -->
                 <div class="col-span-12 2xl:col-span-8">
                     <div class="card border-0 h-full">
                         <div class="card-header border-bottom bg-gray-50 py-4 px-6 flex items-center justify-between">
@@ -350,10 +352,10 @@
             </div>
         </div>
 
-        <!-- Right Sidebar - FIXED -->
+        <!-- Right Sidebar -->
         <div class="col-span-12 3xl:col-span-3">
             <div class="grid grid-cols-1 gap-6">
-                <!-- Total Income - FIXED -->
+                <!-- Total Income -->
                 <div class="card border-0 h-full rounded-lg">
                     <div class="card-header border-bottom flex items-center justify-between">
                         <h6 class="mb-0 font-bold text-lg">Total Income</h6>
@@ -365,11 +367,8 @@
                     </div>
                     <div class="p-6">
                         <div class="relative">
-                            <div id="statisticsDonutChart" class="w-full" style="min-height: 200px;">
-                                <!-- Donut chart container -->
-                                <div class="flex items-center justify-center h-full text-gray-500">
-                                    Loading donut chart...
-                                </div>
+                            <div id="statisticsDonutChart" style="min-height: 250px;">
+                                <div class="chart-loading">Loading income chart...</div>
                             </div>
                             <div class="text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                 <span class="text-gray-600 text-sm">Income</span>
@@ -395,7 +394,7 @@
                     </div>
                 </div>
 
-                <!-- Available Treatments - FIXED -->
+                <!-- Available Treatments -->
                 <div class="card border-0">
                     <div class="card-header">
                         <div class="flex items-center justify-between">
@@ -422,11 +421,7 @@
                         <div class="flex items-center justify-between gap-3 mb-4 last:mb-0 p-3 hover:bg-gray-50 rounded-lg transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="w-12 h-12 rounded-full {{ $treatment['color'] }} flex justify-center items-center flex-shrink-0">
-                                    @if(file_exists(public_path('assets/images/home-eight/' . $treatment['icon'])))
-                                        <img src="{{ asset('assets/images/home-eight/' . $treatment['icon']) }}" alt="{{ $treatment['name'] }}" class="w-6 h-6">
-                                    @else
-                                        <i class="ri-heart-pulse-line text-gray-600"></i>
-                                    @endif
+                                    <i class="ri-heart-pulse-line text-gray-600"></i>
                                 </div>
                                 <div>
                                     <h6 class="text-base mb-0 font-semibold">{{ $treatment['name'] }}</h6>
@@ -445,5 +440,4 @@
 
 @section('script-bottom')
     @vite(['resources/js/pages/dashboard.js'])
-
 @endsection
