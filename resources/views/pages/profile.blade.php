@@ -306,7 +306,7 @@
                                     <i class="ri-record-circle-line float-left h-5 w-5 rounded-full border-2 border-transparent text-xs text-center leading-4 bg-info text-white"></i>
                                     <div class="ms-8">
                                         <h5 class="text-base/none mb-1.5">Graphic Designer</h5>
-                                        <p class="text-sm">Coderthemes Design LLP <span class="ms-3 text-xs">Year: 2010 - 12</span>
+                                        <p class="text-sm">End Brackets Design LLP <span class="ms-3 text-xs">Year: 2010 - 12</span>
                                         </p>
                                         <p class="text-gray-500 mt-3 pb-6">Everyone realizes why a new common language
                                             would be desirable: one could refuse to pay expensive translators.

@@ -1,6 +1,6 @@
 /**
  * Theme: CureOS - Responsive Tailwind CSS 3 Admin Dashboard
- * Author: Coderthemes
+ * Author: End Brackets
  * Module/App: Dashboard
  */
 // Apex Charts js

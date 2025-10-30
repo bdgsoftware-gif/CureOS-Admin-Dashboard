@@ -1,323 +1,449 @@
-@extends('layouts.vertical', ['title' => 'Dashboard','subTitle' => 'Menu', 'pageTitle' => 'Dashboard'])
+@extends('layouts.vertical', [
+    'title' => 'Dashboard',
+    'subTitle' => 'Menu',
+    'pageTitle' => 'Dashboard',
+])
 
 @section('css')
     @vite(['node_modules/jsvectormap/dist/css/jsvectormap.min.css'])
+    <style>
+        /* Chart container fixes */
+        #enrollmentChart, 
+        #radialMultipleBar, 
+        #paymentStatusChart, 
+        #statisticsDonutChart {
+            min-height: 300px;
+            width: 100%;
+        }
+    </style>
 @endsection
 
 @section('content')
-    <div class="grid 2xl:grid-cols-5 lg:grid-cols-6 md:grid-cols-2 gap-6 mb-6">
-        <div class="2xl:col-span-1 lg:col-span-2">
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <div class="grow overflow-hidden">
-                            <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Customers">Customers</h5>
-                            <h3 class="text-2xl my-6">54,214</h3>
-                            <p class="text-gray-400 truncate">
-                                <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 2,541</span>
-                                <span>Since last month</span>
-                            </p>
-                        </div>
-                        <div class="shrink">
-                            <div id="widget-customers" class="apex-charts" data-colors="#47ad77,#e3e9ee"></div>
-                        </div>
-                    </div>
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        @php
+            $cards = [
+                [
+                    'title' => 'Customers',
+                    'value' => '54,214',
+                    'change' => '+2,541',
+                    'trend' => 'up',
+                    'period' => 'Since last month',
+                    'color' => 'from-rose-500 to-pink-600',
+                    'icon' => 'ri-user-line',
+                    'chart' => true,
+                ],
+                [
+                    'title' => 'Orders',
+                    'value' => '7,543',
+                    'change' => '-1.08%',
+                    'trend' => 'down',
+                    'period' => 'Since last week',
+                    'color' => 'from-emerald-500 to-green-600',
+                    'icon' => 'ri-shopping-bag-line',
+                    'chart' => true,
+                ],
+                [
+                    'title' => 'Revenue',
+                    'value' => '$9,254',
+                    'change' => '-7.00%',
+                    'trend' => 'down',
+                    'period' => 'Since last month',
+                    'color' => 'from-sky-500 to-blue-600',
+                    'icon' => 'ri-bank-card-line',
+                    'chart' => true,
+                ],
+                [
+                    'title' => 'Growth',
+                    'value' => '24.5%',
+                    'change' => '+4.2%',
+                    'trend' => 'up',
+                    'period' => 'Since last quarter',
+                    'color' => 'from-purple-500 to-indigo-600',
+                    'icon' => 'ri-bar-chart-line',
+                    'chart' => false,
+                ],
+            ];
+        @endphp
 
-        <div class="2xl:col-span-1 lg:col-span-2">
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <div class="grow overflow-hidden">
-                            <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Orders">Orders</h5>
-                            <h3 class="text-2xl my-6">7,543</h3>
-                            <p class="text-gray-400 truncate">
-                                <span class="bg-danger rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-down-line"></i> 1.08%</span>
-                                <span>Since last month</span>
-                            </p>
-                        </div>
-                        <div id="widget-orders" class="apex-charts" data-colors="#3e60d5,#e3e9ee"></div>
-                    </div>
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
+        @foreach ($cards as $card)
+            <div class="group relative">
+                <!-- Background glow effect on hover -->
+                <div class="absolute inset-0 bg-gradient-to-br {{ $card['color'] }} rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
 
-        <div class="2xl:col-span-1 lg:col-span-2">
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <div class="grow overflow-hidden">
-                            <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Average Revenue">Revenue</h5>
-                            <h3 class="text-2xl my-6">$9,254</h3>
-                            <p class="text-gray-400 truncate">
-                                <span class="bg-danger rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-down-line"></i> 7.00%</span>
-                                <span>Since last month</span>
-                            </p>
-                        </div>
-                        <div id="widget-revenue" class="apex-charts" data-colors="#16a7e9,#e3e9ee"></div>
-                    </div>
-
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
-
-        <div class="2xl:col-span-1 lg:col-span-3">
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <div class="grow overflow-hidden">
-                            <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Growth">Growth</h5>
-                            <h3 class="text-2xl my-6">+ 20.6%</h3>
-                            <p class="text-gray-400 truncate">
-                                <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 4.87%</span>
-                                <span>Since last month</span>
-                            </p>
-                        </div>
-                        <div id="widget-growth" class="apex-charts" data-colors="#ffc35a,#e3e9ee"></div>
+                <div class="relative bg-gradient-to-br {{ $card['color'] }} text-white rounded-2xl overflow-hidden">
+                    <!-- Animated background pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-full"></div>
+                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-full"></div>
                     </div>
 
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
+                    <div class="relative p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30">
+                                    <i class="{{ $card['icon'] }} text-lg"></i>
+                                </div>
+                                <span class="text-white/80 text-sm font-medium">{{ $card['title'] }}</span>
+                            </div>
 
-        <div class="2xl:col-span-1 lg:col-span-3 md:col-span-2">
-            <div class="card">
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <div class="grow overflow-hidden">
-                            <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Conversation Ration">Conversation</h5>
-                            <h3 class="text-2xl my-6">9.62%</h3>
-                            <p class="text-gray-400 truncate">
-                                <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 3.07%</span>
-                                <span>Since last month</span>
-                            </p>
+                            <!-- Trend indicator -->
+                            <div class="flex items-center space-x-1 px-2 py-1 rounded-full bg-white/20 backdrop-blur-sm">
+                                @if ($card['trend'] === 'up')
+                                    <i class="ri-arrow-up-s-line text-emerald-300 text-sm"></i>
+                                    <span class="text-xs text-emerald-300 font-semibold">{{ $card['change'] }}</span>
+                                @else
+                                    <i class="ri-arrow-down-s-line text-rose-300 text-sm"></i>
+                                    <span class="text-xs text-rose-300 font-semibold">{{ $card['change'] }}</span>
+                                @endif
+                            </div>
                         </div>
-                        <div id="widget-conversation" class="apex-charts" data-colors="#f15776,#e3e9ee"></div>
+
+                        <h2 class="text-3xl font-bold mb-2">{{ $card['value'] }}</h2>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/60 text-xs">{{ $card['period'] }}</span>
+
+                            <!-- Mini chart or progress indicator -->
+                            @if ($card['chart'])
+                                <div class="flex space-x-1">
+                                    @foreach ([60, 45, 75, 30, 90, 50, 70] as $height)
+                                        <div class="w-1 bg-white/30 rounded-full" style="height: {{ $height / 4 }}px"></div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="w-16 bg-white/20 rounded-full h-1.5">
+                                    @php
+                                        $progress = (float) str_replace(['%', '$', ','], '', $card['value']);
+                                    @endphp
+                                    <div class="bg-white h-1.5 rounded-full" style="width: {{ min($progress, 100) }}%"></div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
 
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
+                    <!-- Hover effect line -->
+                    <div class="absolute bottom-0 left-0 w-0 h-1 bg-white/50 group-hover:w-full transition-all duration-500"></div>
+                </div>
+            </div>
+        @endforeach
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-6 mb-6">
-        <div class="lg:col-span-2">
-            <div class="card">
-                <div class="flex card-header justify-between items-center">
-                    <h4 class="card-title">Revenue</h4>
-                    <div>
-                        <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                            <i class="ri-more-2-fill text-xl"></i>
-                        </button>
-                        <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
+    {{-- Fixed Section Below --}}
+    
+    <div class="grid grid-cols-1 3xl:grid-cols-12 gap-6">
+        <div class="col-span-12 3xl:col-span-9">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6">
+
+                <!-- Earning Statistic - FIXED -->
+                <div class="col-span-12 2xl:col-span-12">
+                    <div class="card border-0 h-full">
+                        <div class="card-header">
+                            <div class="flex items-center gap-2 justify-between">
+                                <h6 class="mb-0 font-bold text-lg">Earning Statistic</h6>
+                                <select class="form-select form-select-sm w-auto bg-base border border-neutral-600/25 text-gray-600 dark:text-white dark:bg-gray-800 !pe-7">
+                                    <option>This Month</option>
+                                    <option>This Week</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-light/40 border-b border-gray-100 dark:bg-light/5 dark:border-b-gray-700">
-                    <div class="flex flex-wrap justify-around items-center text-center">
-                        <div class="w-1/2 lg:w-1/4">
-                            <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Current Week</p>
-                            <h3 class="text-2xl font-normal mb-6">
-                                <span>$1705.54</span>
-                            </h3>
-                        </div>
-                        <div class="w-1/2 lg:w-1/4">
-                            <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Previous Week</p>
-                            <h3 class="text-2xl font-normal mb-6">
-                                <span>$6,523.25 <i class="ri-corner-right-up-fill text-success"></i></span>
-                            </h3>
-                        </div>
-                        <div class="w-1/2 lg:w-1/4">
-                            <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Conversation</p>
-                            <h3 class="text-2xl font-normal mb-6">
-                                <span>8.27%</span>
-                            </h3>
-                        </div>
-                        <div class="w-1/2 lg:w-1/4">
-                            <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Customers</p>
-                            <h3 class="text-2xl font-normal mb-6">
-                                <span>69k <i class="ri-corner-right-down-line text-danger"></i></span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div dir="ltr">
-                        <div id="revenue-chart" class="apex-charts mt-1" data-colors="#3e60d5,#47ad77"></div>
-                    </div>
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="flex px-6 py-3 justify-between items-center">
-                    <h4 class="card-title">Total Sales</h4>
-                    <div>
-                        <div>
-                            <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                                <i class="ri-more-2-fill text-xl"></i>
-                            </button>
-                            <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                                <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                                <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                                <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                                <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
+                        <div class="p-6">
+                            <ul class="flex flex-wrap items-center justify-center my-3 gap-3">
+                                <li class="flex items-center gap-2">
+                                    <span class="w-3 h-2 rounded-[50rem] bg-primary-600"></span>
+                                    <span class="text-gray-600 text-sm font-semibold">
+                                        New Patient:
+                                        <span class="text-gray-900 font-bold">50</span>
+                                    </span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="w-3 h-2 rounded-[50rem] bg-warning-600"></span>
+                                    <span class="text-gray-600 text-sm font-semibold">
+                                        Old Patient:
+                                        <span class="text-gray-900 font-bold"> 500</span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div id="enrollmentChart" class="w-full" style="min-height: 350px;">
+                                <!-- Chart will be initialized by JavaScript -->
+                                <div class="flex items-center justify-center h-full text-gray-500">
+                                    Loading chart...
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="px-5 py-3.5 bg-warning/10 text-warning border-y border-warning/20">
-                    Something went wrong. Please <strong><a href="javascript:void(0)" class="font-bold underline">refresh</a></strong> to get new data!
-                </div>
-
-                <div class="p-6 pt-0">
-                    <div id="average-sales" class="apex-charts mb-3" data-colors="#3e60d5,#47ad77,#fa5c7c,#16a7e9"></div>
-
-                    <div class="mb-1.5">
-                        <h5 class="text-base font-medium mb-2.5">Brooklyn, New York</h5>
-                        <div class="flex items-center gap-2">
-                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                                <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/4" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <!-- Patient Visited by Department - FIXED -->
+                <div class="col-span-12 lg:col-span-6">
+                    <div class="card border-0 h-full">
+                        <div class="card-header">
+                            <div class="flex items-center gap-2 justify-between">
+                                <h6 class="mb-0 font-bold text-lg">Patient Visited by Department</h6>
                             </div>
-                            <span class="font-bold">72k </span>
+                        </div>
+                        <div class="p-6 flex flex-col lg:flex-row items-center gap-4">
+                            <div id="radialMultipleBar" class="w-full lg:w-1/2" style="min-height: 200px;">
+                                <!-- Radial chart container -->
+                                <div class="flex items-center justify-center h-full text-gray-500">
+                                    Loading radial chart...
+                                </div>
+                            </div>
+                            <ul class="flex flex-col gap-3 w-full lg:w-1/2">
+                                <li class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                                    <span class="text-gray-700">Cardiology:</span>
+                                    <span class="text-primary-600 font-semibold">80%</span>
+                                </li>
+                                <li class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                                    <span class="text-gray-700">Psychiatry:</span>
+                                    <span class="text-warning-600 font-semibold">40%</span>
+                                </li>
+                                <li class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                                    <span class="text-gray-700">Pediatrics:</span>
+                                    <span class="text-success-600 font-semibold">10%</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="mb-1.5">
-                        <h5 class="text-base font-medium mb-2.5">The Castro, San Francisco</h5>
-                        <div class="flex items-center gap-2">
-                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                                <div class="flex flex-col justify-center overflow-hidden bg-primary w-1/3" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="font-bold">39k</span>
-                        </div>
-                    </div>
-
-                    <div class="mb-1.5">
-                        <h5 class="text-base font-medium mb-2.5">Kovan, Singapore</h5>
-                        <div class="flex items-center gap-2">
-                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                                <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/5" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="font-bold">61k </span>
-                        </div>
-                    </div>
-                </div> <!-- end p-6-->
-            </div> <!-- end card-->
-        </div>
-
-    </div>
-
-    <div class="grid grid-cols-12 gap-6">
-        <div class="xl:col-span-5 col-span-12">
-            <div class="card">
-                <div class="card-header flex justify-between items-center">
-                    <h4 class="card-title">Top Selling Products</h4>
-                    <a href="javascript:void(0);" class="btn btn-sm !text-sm bg-info text-white">Export <i class="ri-download-line ms-1"></i></a>
-                </div>
-                <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="bg-light/40 border-b border-gray-100 dark:bg-light/5 dark:border-b-gray-700">
-                        <tr>
-                            <th class="py-1.5 px-4">Product</th>
-                            <th class="py-1.5 px-4">Price</th>
-                            <th class="py-1.5 px-4">Orders</th>
-                            <th class="py-1.5 px-4">Avl. Quantity</th>
-                            <th class="py-1.5 px-4">Seller</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="p-4">ASOS Ridley High Waist</td>
-                            <td class="p-4">$79.49</td>
-                            <td class="p-4">82</td>
-                            <td class="p-4">8,540</td>
-                            <td class="p-4">Adidas</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Marco Lightweight Shirt</td>
-                            <td class="p-4">$12.5</td>
-                            <td class="p-4">58</td>
-                            <td class="p-4">6,320</td>
-                            <td class="p-4">Puma</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Half Sleeve Shirt</td>
-                            <td class="p-4">$9.99</td>
-                            <td class="p-4">254</td>
-                            <td class="p-4">10,258</td>
-                            <td class="p-4">Nike</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Lightweight Jacket</td>
-                            <td class="p-4">$69.99</td>
-                            <td class="p-4">560</td>
-                            <td class="p-4">1,020</td>
-                            <td class="p-4">Puma</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Marco Sport Shoes</td>
-                            <td class="p-4">$119.99</td>
-                            <td class="p-4">75</td>
-                            <td class="p-4">357</td>
-                            <td class="p-4">Adidas</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Custom Women's T-shirts</td>
-                            <td class="p-4">$45.00</td>
-                            <td class="p-4">85</td>
-                            <td class="p-4">135</td>
-                            <td class="p-4">Branded</td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
 
-                <div class="text-center">
-                    <a href="#!" class="btn text-primary underline font-bold mb-2">View All</a>
+                <!-- Patient Visit By Gender - FIXED -->
+                <div class="col-span-12 lg:col-span-6">
+                    <div class="card border-0 h-full">
+                        <div class="card-header">
+                            <div class="flex items-center gap-2 justify-between">
+                                <h6 class="mb-0 font-bold text-lg">Patient Visit By Gender</h6>
+                                <select class="form-select form-select-sm w-auto bg-base border border-neutral-600/25 text-gray-600 dark:text-white dark:bg-gray-800 !pe-7">
+                                    <option>This Month</option>
+                                    <option>This Week</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <ul class="flex flex-wrap items-center justify-center my-3 gap-3">
+                                <li class="flex items-center gap-2">
+                                    <span class="w-3 h-2 rounded-[50rem] bg-warning-600"></span>
+                                    <span class="text-gray-600 text-sm font-semibold">
+                                        Male:
+                                        <span class="text-gray-900 font-bold">200</span>
+                                    </span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="w-3 h-2 rounded-[50rem] bg-success-600"></span>
+                                    <span class="text-gray-600 text-sm font-semibold">
+                                        Female:
+                                        <span class="text-gray-900 font-bold"> 450</span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div id="paymentStatusChart" class="w-full" style="min-height: 300px;">
+                                <!-- Chart container -->
+                                <div class="flex items-center justify-center h-full text-gray-500">
+                                    Loading gender chart...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctors List - FIXED -->
+                <div class="col-span-12 2xl:col-span-4">
+                    <div class="card border-0">
+                        <div class="card-header border-bottom">
+                            <div class="flex items-center gap-2 justify-between">
+                                <h6 class="mb-0 font-bold text-lg">Doctors List</h6>
+                                <a href="javascript:void(0)" class="flex-shrink-0 text-primary-600 hover:text-primary-700 flex items-center gap-1 transition-colors">
+                                    View All
+                                    <i class="ri-arrow-right-line"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-col gap-4">
+                                @php
+                                    $doctors = [
+                                        ['img' => 'doctor-img1.png', 'name' => 'Dr. Davis', 'specialty' => 'Cardiology', 'status' => 'available'],
+                                        ['img' => 'doctor-img2.png', 'name' => 'Dr. Riead', 'specialty' => 'Orthopedics', 'status' => 'available'],
+                                        ['img' => 'doctor-img3.png', 'name' => 'Albert Flores', 'specialty' => 'Ophthalmology', 'status' => 'not-available'],
+                                        ['img' => 'doctor-img4.png', 'name' => 'Dr. Smith', 'specialty' => 'Cardiology', 'status' => 'available'],
+                                        ['img' => 'doctor-img6.png', 'name' => 'Dr. Johnson', 'specialty' => 'Cardiology', 'status' => 'not-available'],
+                                        ['img' => 'doctor-img5.png', 'name' => 'Dr. Martinez', 'specialty' => 'Cardiology', 'status' => 'available'],
+                                    ];
+                                @endphp
+                                
+                                @foreach($doctors as $doctor)
+                                <div class="flex items-center justify-between gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 me-3 overflow-hidden">
+                                            @if(file_exists(public_path('assets/images/home-eight/' . $doctor['img'])))
+                                                <img src="{{ asset('assets/images/home-eight/' . $doctor['img']) }}" alt="{{ $doctor['name'] }}" class="w-full h-full object-cover">
+                                            @else
+                                                <i class="ri-user-line text-gray-400 text-xl"></i>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <h6 class="text-base mb-0 font-semibold">{{ $doctor['name'] }}</h6>
+                                            <span class="text-sm text-gray-600">{{ $doctor['specialty'] }}</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full text-sm font-medium {{ $doctor['status'] == 'available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                        {{ $doctor['status'] == 'available' ? 'Available' : 'Not Available' }}
+                                    </span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest Appointments - FIXED -->
+                <div class="col-span-12 2xl:col-span-8">
+                    <div class="card border-0 h-full">
+                        <div class="card-header border-bottom bg-gray-50 py-4 px-6 flex items-center justify-between">
+                            <h6 class="text-lg font-semibold mb-0">Latest Appointments</h6>
+                            <a href="javascript:void(0)" class="flex-shrink-0 text-primary-600 hover:text-primary-700 flex items-center gap-1 transition-colors">
+                                View All
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+                        <div class="p-6">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        @php
+                                            $appointments = [
+                                                ['name' => 'General Checkup', 'id' => '#63254', 'date' => '27 Mar 2025', 'status' => 'completed'],
+                                                ['name' => 'Blood test results', 'id' => '#63255', 'date' => '26 Mar 2025', 'status' => 'canceled'],
+                                                ['name' => 'Heart Checkup', 'id' => '#63256', 'date' => '25 Mar 2025', 'status' => 'completed'],
+                                                ['name' => 'Vaccination', 'id' => '#63257', 'date' => '24 Mar 2025', 'status' => 'canceled'],
+                                                ['name' => 'Dental Cleanup', 'id' => '#63258', 'date' => '23 Mar 2025', 'status' => 'completed'],
+                                            ];
+                                        @endphp
+                                        
+                                        @foreach($appointments as $appointment)
+                                        <tr class="hover:bg-gray-50 transition-colors">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $appointment['name'] }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $appointment['id'] }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $appointment['date'] }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-3 py-1 rounded-full text-sm font-medium {{ $appointment['status'] == 'completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                    {{ ucfirst($appointment['status']) }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="xl:col-span-7 col-span-12">
-            <div class="card h-full">
-                <div class="flex card-header justify-between items-center !border-0">
-                    <h4 class="card-title">Revenue By Locations</h4>
-                    <div>
-                        <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                            <i class="ri-more-2-fill text-xl"></i>
-                        </button>
-                        <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
+        <!-- Right Sidebar - FIXED -->
+        <div class="col-span-12 3xl:col-span-3">
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Total Income - FIXED -->
+                <div class="card border-0 h-full rounded-lg">
+                    <div class="card-header border-bottom flex items-center justify-between">
+                        <h6 class="mb-0 font-bold text-lg">Total Income</h6>
+                        <select class="form-select form-select-sm w-auto bg-base border border-neutral-600/25 text-gray-600 dark:text-white dark:bg-gray-800">
+                            <option>This Month</option>
+                            <option>This Week</option>
+                            <option>This Year</option>
+                        </select>
+                    </div>
+                    <div class="p-6">
+                        <div class="relative">
+                            <div id="statisticsDonutChart" class="w-full" style="min-height: 200px;">
+                                <!-- Donut chart container -->
+                                <div class="flex items-center justify-center h-full text-gray-500">
+                                    Loading donut chart...
+                                </div>
+                            </div>
+                            <div class="text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <span class="text-gray-600 text-sm">Income</span>
+                                <h6 class="text-xl font-bold">$28,500</h6>
+                            </div>
                         </div>
+                        <ul class="grid grid-cols-2 gap-4 mt-4">
+                            <li class="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-3 h-2 rounded-full bg-warning-600"></span>
+                                    <span class="text-gray-600 text-sm">Net Income</span>
+                                </div>
+                                <h6 class="text-gray-900 font-bold">$50,000</h6>
+                            </li>
+                            <li class="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-3 h-2 rounded-full bg-success-600"></span>
+                                    <span class="text-gray-600 text-sm">Commission</span>
+                                </div>
+                                <h6 class="text-gray-900 font-bold">$20,000</h6>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="p-6">
-                    <div class="grid lg:grid-cols-3 gap-6">
-                        <div class="lg:col-span-2">
-                            <div id="world-map-markers" class="my-4"></div>
-                        </div>
-                        <div dir="ltr">
-                            <div id="country-chart" class="apex-charts" data-colors="#47ad77"></div>
+                <!-- Available Treatments - FIXED -->
+                <div class="card border-0">
+                    <div class="card-header">
+                        <div class="flex items-center justify-between">
+                            <h6 class="mb-0 font-bold text-lg">Available Treatments</h6>
+                            <a href="javascript:void(0)" class="text-primary-600 hover:text-primary-700 flex items-center gap-1 transition-colors">
+                                View All
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
                         </div>
                     </div>
+                    <div class="p-6">
+                        @php
+                            $treatments = [
+                                ['icon' => 'treatment-icon1.png', 'name' => 'Psychiatry', 'doctors' => '57 Doctors', 'color' => 'bg-blue-100'],
+                                ['icon' => 'treatment-icon2.png', 'name' => 'Orthopedic', 'doctors' => '85 Doctors', 'color' => 'bg-green-100'],
+                                ['icon' => 'treatment-icon3.png', 'name' => 'Cardiology', 'doctors' => '60 Doctors', 'color' => 'bg-purple-100'],
+                                ['icon' => 'treatment-icon4.png', 'name' => 'Pediatrics', 'doctors' => '120 Doctors', 'color' => 'bg-yellow-100'],
+                                ['icon' => 'treatment-icon5.png', 'name' => 'Neurology', 'doctors' => '25 Doctors', 'color' => 'bg-red-100'],
+                                ['icon' => 'treatment-icon6.png', 'name' => 'Gastroenterology', 'doctors' => '95 Doctors', 'color' => 'bg-indigo-100'],
+                            ];
+                        @endphp
+                        
+                        @foreach($treatments as $treatment)
+                        <div class="flex items-center justify-between gap-3 mb-4 last:mb-0 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full {{ $treatment['color'] }} flex justify-center items-center flex-shrink-0">
+                                    @if(file_exists(public_path('assets/images/home-eight/' . $treatment['icon'])))
+                                        <img src="{{ asset('assets/images/home-eight/' . $treatment['icon']) }}" alt="{{ $treatment['name'] }}" class="w-6 h-6">
+                                    @else
+                                        <i class="ri-heart-pulse-line text-gray-600"></i>
+                                    @endif
+                                </div>
+                                <div>
+                                    <h6 class="text-base mb-0 font-semibold">{{ $treatment['name'] }}</h6>
+                                    <span class="text-sm text-gray-600">{{ $treatment['doctors'] }}</span>
+                                </div>
+                            </div>
+                            <span class="text-gray-500 text-sm">08:45 AM</span>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div> <!-- end card-->
+            </div>
         </div>
     </div>
 @endsection
 
 @section('script-bottom')
     @vite(['resources/js/pages/dashboard.js'])
+
 @endsection

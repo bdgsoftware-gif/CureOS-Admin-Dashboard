@@ -43,7 +43,7 @@ class CustomTag {
         this.outerHTML = `<footer class="h-16 flex items-center px-6 bg-white border-t border-gray-200">
         <div class="flex md:justify-between justify-center w-full gap-4">
           <div>
-            ${new Date().getFullYear()} © Template - <a href="https://endbrackets.com/" target="_blank">Coderthemes</a>
+            ${new Date().getFullYear()} © Template - <a href="https://endbrackets.com/" target="_blank">End Brackets</a>
           </div>
           <div class="md:flex hidden gap-4 item-center md:justify-end">
             <a href="https://endbrackets.com/#aboutus" class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900" target="_blank">About</a>

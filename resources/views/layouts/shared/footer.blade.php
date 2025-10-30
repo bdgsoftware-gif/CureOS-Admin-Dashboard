@@ -4,7 +4,7 @@
         <div>
             <script>
                 document.write(new Date().getFullYear())
-            </script> © CureOS - <a href="https://endbrackets.com/" target="_blank">Coderthemes</a>
+            </script> © CureOS - <a href="https://endbrackets.com/" target="_blank">End Brackets</a>
         </div>
         <div class="md:flex hidden gap-4 item-center md:justify-end">
             <a href="javascript: void(0);"

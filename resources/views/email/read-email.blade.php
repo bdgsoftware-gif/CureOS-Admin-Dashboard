@@ -187,7 +187,7 @@
                     </div>
                 </div>
 
-                <p class="mb-4 text-sm/normal">Hi Coderthemes!</p>
+                <p class="mb-4 text-sm/normal">Hi End Brackets!</p>
                 <p class="mb-4 text-sm/normal">Clicking ‘Order Service’ on the right-hand side of the above page will
                     present you with an order page. This service has the following Briefing Guidelines that will need to be
                     filled before placing your order:</p>

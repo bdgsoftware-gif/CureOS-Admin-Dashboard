@@ -1,6 +1,6 @@
 /**
  * Theme: CureOS - Responsive Tailwind Admin Dashboard
- * Author: Coderthemes
+ * Author: End Brackets
  * Module/App: form-advanced.init.js
  */
 

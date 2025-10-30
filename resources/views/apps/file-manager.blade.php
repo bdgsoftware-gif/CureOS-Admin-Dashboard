@@ -393,7 +393,7 @@
                                             </td>
                                             <td class="p-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                 <p>Feb 13, 2020</p>
-                                                <span class="text-xs">by Coderthemes</span>
+                                                <span class="text-xs">by End Brackets</span>
                                             </td>
                                             <td class="p-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">521
                                                 MB</td>

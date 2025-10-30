@@ -1,6 +1,6 @@
 /*
 Template Name: CureOS - Responsive Tailwind CSS 3 Admin Dashboard
-Author: CoderThemes
+Author: EndBrackets
 Website: https://endbrackets.com/
 Contact: support@endbrackets.com
 File: Auth Swiper js

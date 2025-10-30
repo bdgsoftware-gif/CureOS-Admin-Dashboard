@@ -1,6 +1,6 @@
 /*
 Template Name: CureOS - Responsive Tailwind Admin Dashboard
-Author: CoderThemes
+Author: EndBrackets
 Website: https://endbrackets.com/
 Contact: support@endbrackets.com
 File: Quilljs init js
