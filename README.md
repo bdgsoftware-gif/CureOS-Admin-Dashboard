@@ -1,66 +1,300 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CureOS - Hospital Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![CureOS Dashboard](https://via.placeholder.com/1200x600/3B82F6/FFFFFF?text=CureOS+Hospital+Management+System)
 
-## About Laravel
+A modern, responsive Hospital Management System built with Laravel and Tailwind CSS. CureOS provides comprehensive healthcare management solutions with an intuitive dashboard and robust features.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Core Modules
+- **Patient Management** - Complete patient records and history
+- **Appointment Scheduling** - Efficient booking and management system
+- **Doctor Management** - Staff profiles and availability tracking
+- **Billing & Payments** - Financial management and invoicing
+- **Medical Records** - Secure patient health information storage
+- **Inventory Management** - Medical supplies and equipment tracking
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Dashboard Features
+- **Real-time Analytics** - Interactive charts and statistics
+- **Quick Overview** - Key metrics and performance indicators
+- **Appointment Calendar** - Visual scheduling interface
+- **Revenue Tracking** - Income and financial reports
+- **Staff Management** - Doctor availability and profiles
 
-## Learning Laravel
+## 🛠️ Technology Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Backend
+- **Laravel 12** - PHP Framework
+- **MySQL** - Database
+- **Eloquent ORM** - Database Management
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Frontend
+- **Tailwind CSS** - Utility-first CSS framework
+- **Alpine.js** - Lightweight JavaScript framework
+- **ApexCharts** - Interactive charts and graphs
+- **Remix Icons** - Beautiful icon library
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Development Tools
+- **Vite** - Fast build tool
+- **Laravel Sail** - Docker development environment
+- **Pint** - PHP code style fixer
 
-## Laravel Sponsors
+## 📦 Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- Node.js 18+ and npm
+- MySQL 8.0+
 
-### Premium Partners
+### Quick Start
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/cureos.git
+   cd cureos
+   ```
 
-## Contributing
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Install JavaScript dependencies**
+   ```bash
+   npm install
+   ```
 
-## Code of Conduct
+4. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Configure database**
+   ```bash
+   # Update .env with your database credentials
+   DB_DATABASE=cureos
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-## Security Vulnerabilities
+6. **Run migrations**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. **Build assets**
+   ```bash
+   npm run build
+   # or for development
+   npm run dev
+   ```
 
-## License
+8. **Start development server**
+   ```bash
+   php artisan serve
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Using Docker (Laravel Sail)
+```bash
+# Install Sail
+php artisan sail:install
+
+# Start containers
+./vendor/bin/sail up -d
+
+# Run migrations
+./vendor/bin/sail artisan migrate --seed
+```
+
+## 🎯 Usage
+
+### Default Login Credentials
+```
+Email: admin@example.com
+Password: password
+```
+
+### Key Features Overview
+
+#### Dashboard
+- View real-time hospital statistics
+- Monitor patient admissions and appointments
+- Track revenue and financial performance
+- Manage doctor schedules and availability
+
+#### Patient Management
+- Add new patients with complete profiles
+- Track patient medical history
+- Manage appointments and consultations
+- Generate patient reports
+
+#### Appointment System
+- Schedule appointments with doctors
+- Send automated reminders
+- Track appointment status
+- Manage cancellations and rescheduling
+
+## 🏗️ Project Structure
+
+```
+cureos/
+├── app/
+│   ├── Http/Controllers/
+│   ├── Models/
+│   └── Providers/
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   ├── auth/
+│   │   └── dashboard.blade.php
+│   └── js/
+│       └── pages/
+│           └── dashboard.js
+├── routes/
+│   ├── web.php
+│   └── auth.php
+├── database/
+│   ├── migrations/
+│   └── seeders/
+└── public/
+    └── images/
+```
+
+## 🎨 Customization
+
+### Styling
+The project uses Tailwind CSS with custom configuration:
+- Primary color: `#3e60d5`
+- Custom color palette in `tailwind.config.js`
+- Responsive design with breakpoints
+
+### Charts
+Interactive charts powered by ApexCharts:
+- Enrollment statistics
+- Patient demographics
+- Revenue analytics
+- Department-wise distribution
+
+### Components
+Reusable Blade components:
+- Flash messages with Alpine.js animations
+- Card layouts with hover effects
+- Form elements with validation
+- Responsive navigation
+
+## 🔧 Development
+
+### Code Style
+```bash
+# Fix PHP code style
+composer pint
+
+# Check JavaScript style
+npm run lint
+```
+
+### Building Assets
+```bash
+# Development build with hot reload
+npm run dev
+
+# Production build
+npm run build
+```
+
+### Testing
+```bash
+# Run PHP tests
+php artisan test
+
+# Run feature tests
+php artisan test --feature
+```
+
+## 📊 Database Schema
+
+Key tables include:
+- `users` - System users and staff
+- `patients` - Patient records
+- `doctors` - Medical staff profiles
+- `appointments` - Scheduling information
+- `medical_records` - Patient health data
+- `payments` - Financial transactions
+
+## 🔒 Security Features
+
+- Laravel Sanctum for API authentication
+- CSRF protection
+- XSS prevention
+- SQL injection protection
+- Input validation and sanitization
+- Secure session management
+
+## 🚀 Deployment
+
+### Production Requirements
+- PHP 8.2+
+- MySQL 8.0+
+- Web server (Apache/Nginx)
+- SSL certificate
+
+### Deployment Steps
+1. Set up production environment
+2. Configure environment variables
+3. Run migrations: `php artisan migrate --force`
+4. Build assets: `npm run build`
+5. Optimize: `php artisan optimize`
+6. Set up queue workers (if using)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Workflow
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- 📧 Email: hello@endbrackets.com
+- 🐛 [Issue Tracker](https://github.com/your-username/cureos/issues)
+- 📖 [Documentation](https://docs.cureos.com)
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com) - The PHP framework
+- [Tailwind CSS](https://tailwindcss.com) - CSS framework
+- [ApexCharts](https://apexcharts.com) - Chart library
+- [Remix Icons](https://remixicon.com) - Icon library
+
+---
+
+<div align="center">
+
+**Built with ❤️ by [End Brackets](https://endbrackets.com)**
+
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+
+</div>
+
+## 📱 Screenshots
+
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x450/3B82F6/FFFFFF?text=Dashboard+View)
+
+### Patient Management
+![Patient Management](https://via.placeholder.com/800x450/10B981/FFFFFF?text=Patient+Management)
+
+### Appointment Scheduling
+![Appointments](https://via.placeholder.com/800x450/F59E0B/FFFFFF?text=Appointment+System)
