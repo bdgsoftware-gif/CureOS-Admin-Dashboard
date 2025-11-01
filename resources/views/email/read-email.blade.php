@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Email Read', 'subTitle' => 'Apps', 'pageTitle' => 'Email Read'])
+@extends('layouts.app', ['title' => 'Email Read', 'subTitle' => 'Apps', 'pageTitle' => 'Email Read'])
 
 @section('css')
     @vite(['node_modules/quill/dist/quill.core.css', 'node_modules/quill/dist/quill.bubble.css', 'node_modules/quill/dist/quill.snow.css'])

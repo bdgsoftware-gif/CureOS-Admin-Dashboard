@@ -1,7 +1,6 @@
-@extends('layouts.vertical', ['title' => 'Line', 'subTitle' => 'Chart', 'pageTitle' => 'Line'])
+@extends('layouts.app', ['title' => 'Line', 'subTitle' => 'Chart', 'pageTitle' => 'Line'])
 
 @section('content')
-
     <div class="grid xl:grid-cols-2 gap-6">
         <div class="card">
             <div class="p-6">
@@ -87,7 +86,6 @@
         </div> <!-- end card -->
 
     </div><!-- end Grid -->
-
 @endsection
 
 @section('script')

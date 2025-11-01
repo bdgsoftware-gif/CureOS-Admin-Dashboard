@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'List Group', 'subTitle' => 'Components', 'pageTitle' => 'List Group'])
+@extends('layouts.app', ['title' => 'List Group', 'subTitle' => 'Components', 'pageTitle' => 'List Group'])
 
 @section('content')
     <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-6">

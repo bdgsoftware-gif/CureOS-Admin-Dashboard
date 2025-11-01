@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'File Manager', 'subTitle' => 'Apps', 'pageTitle' => 'File Manager'])
+@extends('layouts.app', ['title' => 'File Manager', 'subTitle' => 'Apps', 'pageTitle' => 'File Manager'])
 
 @section('content')
     <div class="lg:flex gap-2">

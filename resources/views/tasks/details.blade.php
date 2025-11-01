@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Project Detail', 'subTitle' => 'Project', 'pageTitle' => 'Project Detail'])
+@extends('layouts.app', ['title' => 'Project Detail', 'subTitle' => 'Project', 'pageTitle' => 'Project Detail'])
 
 @section('css')
     @vite(['node_modules/dropzone/dist/dropzone.css'])

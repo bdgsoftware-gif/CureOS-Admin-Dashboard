@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Kanban', 'subTitle' => 'Apps', 'pageTitle' => 'Kanban'])
+@extends('layouts.app', ['title' => 'Kanban', 'subTitle' => 'Apps', 'pageTitle' => 'Kanban'])
 
 @section('content')
     <div class="grid w-full">

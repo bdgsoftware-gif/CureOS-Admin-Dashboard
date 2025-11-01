@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Chat', 'subTitle' => 'Apps', 'pageTitle' => 'Chat'])
+@extends('layouts.app', ['title' => 'Chat', 'subTitle' => 'Apps', 'pageTitle' => 'Chat'])
 
 @section('content')
     <div class="relative lg:overflow-visible overflow-hidden">
