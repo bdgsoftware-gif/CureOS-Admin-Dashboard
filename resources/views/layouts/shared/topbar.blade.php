@@ -1,7 +1,7 @@
 <!-- Topbar Start -->
 <header class="app-header flex items-center px-4 gap-3.5">
 
-    <a href="{{route('any', 'index')}}" class="logo-box">
+    <a href="{{ route('any', 'index') }}" class="logo-box">
         <!-- Light Logo -->
         <div class="logo-light">
             <img src="/images/logo.png" class="logo-lg h-[22px]" alt="Light logo">
@@ -26,8 +26,9 @@
     <!-- Topbar Search Input -->
     <div class="relative hidden lg:block">
 
-        <form data-fc-type="dropdown" type="button">
-            <input type="search" class="form-input bg-black/5 border-none ps-8 relative" placeholder="Search...">
+        <form data-fc-type="dropdown" type="button" class="w-36 sm:w-44 md:w-52 lg:w-64 xl:w-96">
+            <input type="search" class="form-input bg-black/10 border-none text-sm ps-8 py-2 w-full relative"
+                placeholder="Search...">
             <span class="ri-search-line text-base z-10 absolute start-2 top-1/2 -translate-y-1/2"></span>
         </form>
 
@@ -199,7 +200,8 @@
                                 <img src="/images/users/avatar-2.jpg" class="rounded-full h-9 w-9" alt="">
                             </div>
                             <div class="flex-grow truncate ms-2">
-                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small class="font-normal ms-1">1
+                                <h5 class="text-sm font-semibold mb-1">Cristina Pride <small
+                                        class="font-normal ms-1">1
                                         day ago</small></h5>
                                 <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next
                                     meeting</small>
@@ -346,7 +348,7 @@
 
         <div
             class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-            
+
             <!-- item-->
             <a href="{{ route('second', ['pages', 'profile']) }}"
                 class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
@@ -369,21 +371,21 @@
             </a>
 
             <!-- item-->
-            <a href="{{ route('second', ['auth', 'lock-screen'])}}"
+            <a href="{{ route('second', ['auth', 'lock-screen']) }}"
                 class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-lock-password-line text-lg align-middle"></i>
                 <span>Lock Screen</span>
             </a>
             @auth
-            <!-- item-->
-            <form method="POST" action="{{ route('logout') }}" class="w-full">
-                @csrf
-                <button
-                    class="w-full flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                    <i class="ri-logout-box-line text-lg align-middle"></i>
-                    <span>Logout</span>
-                </button>
-            </form>
+                <!-- item-->
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    @csrf
+                    <button
+                        class="w-full flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                        <i class="ri-logout-box-line text-lg align-middle"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             @endauth
         </div>
     </div>

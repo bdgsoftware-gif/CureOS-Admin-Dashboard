@@ -1,11 +1,10 @@
-@extends('layouts.vertical', ['title' => 'Data Table', 'subTitle' => 'Table', 'pageTitle' => 'Data Table'])
+@extends('layouts.app', ['title' => 'Data Table', 'subTitle' => 'Table', 'pageTitle' => 'Data Table'])
 
 @section('css')
     @vite(['node_modules/gridjs/dist/theme/mermaid.min.css'])
 @endsection
 
 @section('content')
-
     <div class="flex flex-col gap-6">
         <div class="card">
             <div class="card-header">
@@ -29,7 +28,8 @@
                 </div>
             </div>
             <div class="p-6">
-                <p class="text-sm text-slate-700 dark:text-slate-400 mb-4">Pagination can be enabled by setting <code>pagination:
+                <p class="text-sm text-slate-700 dark:text-slate-400 mb-4">Pagination can be enabled by setting
+                    <code>pagination:
                         true</code>:</p>
 
                 <div id="table-pagination"></div>
@@ -109,7 +109,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('script')

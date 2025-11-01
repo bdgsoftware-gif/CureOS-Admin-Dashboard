@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Hidden Sidebar','subTitle' => 'Menu', 'pageTitle' => 'Hidden Sidebar','sidenavView' => 'hidden'])
+@extends('layouts.app', ['title' => 'Hidden Sidebar', 'subTitle' => 'Menu', 'pageTitle' => 'Hidden Sidebar', 'sidenavView' => 'hidden'])
 
 @section('css')
     @vite(['node_modules/jsvectormap/dist/css/jsvectormap.min.css'])
@@ -116,19 +116,19 @@
                     <h4 class="card-title">Revenue</h4>
                     <div>
                         <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
-                                data-fc-placement="bottom-end" type="button">
+                            data-fc-placement="bottom-end" type="button">
                             <i class="ri-more-2-fill text-xl"></i>
                         </button>
                         <div
                             class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Sales Report</a>
+                                href="javascript: void(0);">Sales Report</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Export Report</a>
+                                href="javascript: void(0);">Export Report</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Profit</a>
+                                href="javascript: void(0);">Profit</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Action</a>
+                                href="javascript: void(0);">Action</a>
                         </div>
                     </div>
                 </div>
@@ -174,39 +174,39 @@
                     <div>
                         <div>
                             <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
-                                    data-fc-placement="bottom-end" type="button">
+                                data-fc-placement="bottom-end" type="button">
                                 <i class="ri-more-2-fill text-xl"></i>
                             </button>
                             <div
                                 class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
                                 <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                   href="javascript: void(0);">Sales Report</a>
+                                    href="javascript: void(0);">Sales Report</a>
                                 <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                   href="javascript: void(0);">Export Report</a>
+                                    href="javascript: void(0);">Export Report</a>
                                 <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                   href="javascript: void(0);">Profit</a>
+                                    href="javascript: void(0);">Profit</a>
                                 <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                   href="javascript: void(0);">Action</a>
+                                    href="javascript: void(0);">Action</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="px-5 py-3.5 bg-warning/10 text-warning border-y border-warning/20">
-                    Something went wrong. Please <strong><a href="javascript:void(0)" class="font-bold underline">refresh</a></strong>
+                    Something went wrong. Please <strong><a href="javascript:void(0)"
+                            class="font-bold underline">refresh</a></strong>
                     to get new data!
                 </div>
 
                 <div class="p-6 pt-0">
-                    <div id="average-sales" class="apex-charts mb-3"
-                         data-colors="#3e60d5,#47ad77,#fa5c7c,#16a7e9"></div>
+                    <div id="average-sales" class="apex-charts mb-3" data-colors="#3e60d5,#47ad77,#fa5c7c,#16a7e9"></div>
 
                     <div class="mb-1.5">
                         <h5 class="text-base font-medium mb-2.5">Brooklyn, New York</h5>
                         <div class="flex items-center gap-2">
                             <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                                 <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/4"
-                                     role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="font-bold">72k </span>
                         </div>
@@ -217,7 +217,7 @@
                         <div class="flex items-center gap-2">
                             <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                                 <div class="flex flex-col justify-center overflow-hidden bg-primary w-1/3"
-                                     role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="font-bold">39k</span>
                         </div>
@@ -228,7 +228,7 @@
                         <div class="flex items-center gap-2">
                             <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                                 <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/5"
-                                     role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="font-bold">61k </span>
                         </div>
@@ -250,57 +250,57 @@
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="bg-light/40 border-b border-gray-100 dark:bg-light/5 dark:border-b-gray-700">
-                        <tr>
-                            <th class="py-1.5 px-4">Product</th>
-                            <th class="py-1.5 px-4">Price</th>
-                            <th class="py-1.5 px-4">Orders</th>
-                            <th class="py-1.5 px-4">Avl. Quantity</th>
-                            <th class="py-1.5 px-4">Seller</th>
-                        </tr>
+                            <tr>
+                                <th class="py-1.5 px-4">Product</th>
+                                <th class="py-1.5 px-4">Price</th>
+                                <th class="py-1.5 px-4">Orders</th>
+                                <th class="py-1.5 px-4">Avl. Quantity</th>
+                                <th class="py-1.5 px-4">Seller</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="p-4">ASOS Ridley High Waist</td>
-                            <td class="p-4">$79.49</td>
-                            <td class="p-4">82</td>
-                            <td class="p-4">8,540</td>
-                            <td class="p-4">Adidas</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Marco Lightweight Shirt</td>
-                            <td class="p-4">$12.5</td>
-                            <td class="p-4">58</td>
-                            <td class="p-4">6,320</td>
-                            <td class="p-4">Puma</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Half Sleeve Shirt</td>
-                            <td class="p-4">$9.99</td>
-                            <td class="p-4">254</td>
-                            <td class="p-4">10,258</td>
-                            <td class="p-4">Nike</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Lightweight Jacket</td>
-                            <td class="p-4">$69.99</td>
-                            <td class="p-4">560</td>
-                            <td class="p-4">1,020</td>
-                            <td class="p-4">Puma</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Marco Sport Shoes</td>
-                            <td class="p-4">$119.99</td>
-                            <td class="p-4">75</td>
-                            <td class="p-4">357</td>
-                            <td class="p-4">Adidas</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">Custom Women's T-shirts</td>
-                            <td class="p-4">$45.00</td>
-                            <td class="p-4">85</td>
-                            <td class="p-4">135</td>
-                            <td class="p-4">Branded</td>
-                        </tr>
+                            <tr>
+                                <td class="p-4">ASOS Ridley High Waist</td>
+                                <td class="p-4">$79.49</td>
+                                <td class="p-4">82</td>
+                                <td class="p-4">8,540</td>
+                                <td class="p-4">Adidas</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Marco Lightweight Shirt</td>
+                                <td class="p-4">$12.5</td>
+                                <td class="p-4">58</td>
+                                <td class="p-4">6,320</td>
+                                <td class="p-4">Puma</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Half Sleeve Shirt</td>
+                                <td class="p-4">$9.99</td>
+                                <td class="p-4">254</td>
+                                <td class="p-4">10,258</td>
+                                <td class="p-4">Nike</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Lightweight Jacket</td>
+                                <td class="p-4">$69.99</td>
+                                <td class="p-4">560</td>
+                                <td class="p-4">1,020</td>
+                                <td class="p-4">Puma</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Marco Sport Shoes</td>
+                                <td class="p-4">$119.99</td>
+                                <td class="p-4">75</td>
+                                <td class="p-4">357</td>
+                                <td class="p-4">Adidas</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">Custom Women's T-shirts</td>
+                                <td class="p-4">$45.00</td>
+                                <td class="p-4">85</td>
+                                <td class="p-4">135</td>
+                                <td class="p-4">Branded</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -317,19 +317,19 @@
                     <h4 class="card-title">Revenue By Locations</h4>
                     <div>
                         <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
-                                data-fc-placement="bottom-end" type="button">
+                            data-fc-placement="bottom-end" type="button">
                             <i class="ri-more-2-fill text-xl"></i>
                         </button>
                         <div
                             class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Sales Report</a>
+                                href="javascript: void(0);">Sales Report</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Export Report</a>
+                                href="javascript: void(0);">Export Report</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Profit</a>
+                                href="javascript: void(0);">Profit</a>
                             <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                               href="javascript: void(0);">Action</a>
+                                href="javascript: void(0);">Action</a>
                         </div>
                     </div>
                 </div>

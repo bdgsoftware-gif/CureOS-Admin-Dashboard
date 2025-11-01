@@ -3,14 +3,16 @@
 
 <head>
     @include('layouts.shared/title-meta', ['title' => 'Login'])
-
     @include('layouts.shared/head-css', ['mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
+    <!-- AlpineJS CDN for flash animations -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="relative flex flex-col h-full max-h-screen overflow-hidden">
+<body class="relative flex flex-col h-full min-h-screen overflow-y-auto">
 
     <div class="absolute inset-0 w-full h-full">
-        {{-- here svg will work as background, will put manually --}}
+        {{-- your SVG background --}}
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svgjs="http://svgjs.com/svgjs" width="100%" height="100%" preserveAspectRatio="none"
             viewBox="0 0 1920 1028">
@@ -180,22 +182,27 @@
         </svg>
     </div>
 
+    <!-- Flash Messages for login page -->
+    @if (session()->has('flash'))
+        <x-flash-message :message="session('flash.message')" :type="session('flash.type')" :icon="session('flash.icon')" />
+    @endif
+
     <div class="relative flex flex-col items-center justify-center flex-grow py-4 overflow-hidden">
         <div class="flex justify-center w-full">
             <div class="w-full max-w-md px-4 mx-auto my-4">
                 <div
                     class="card overflow-hidden rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
 
-                    <div class="p-8 bg-gradient-to-r from-emerald-500 to-teal-600 text-center">
+                    <div class="p-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-center">
                         <a href="{{ route('any', 'index') }}" class="flex justify-center">
                             <img src="/images/logo.png" alt="logo"
-                                class="h-8 block dark:hidden filter brightness-0 invert">
-                            <img src="/images/logo-dark.png" alt="logo" class="h-8 hidden dark:block">
+                                class="h-16 block dark:hidden filter brightness-0 invert">
+                            <img src="/images/logo-dark.png" alt="logo" class="h-16 hidden dark:block">
                         </a>
                     </div>
 
                     <div class="p-8">
-                        <div class="text-center mb-8">
+                        <div class="text-center mb-6">
                             <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Welcome Back</h4>
                             <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                 Enter your credentials to access your account
@@ -205,26 +212,28 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            @if (sizeof($errors) > 0)
-                            @foreach ($errors->all() as $error)
-                            <div
-                                class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                                <p class="text-red-600 dark:text-red-400 text-sm">{{ $error }}</p>
-                            </div>
-                            @endforeach
-                            @endif
+                            {{-- Remove the old error display since we have flash messages now --}}
+                            {{-- @if (sizeof($errors) > 0)
+                                @foreach ($errors->all() as $error)
+                                    <div
+                                        class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                        <p class="text-red-600 dark:text-red-400 text-sm">{{ $error }}</p>
+                                    </div>
+                                @endforeach
+                            @endif --}}
 
-                            <div class="mb-6">
+                            <div class="mb-4">
                                 <label for="emailaddress"
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email
                                     Address</label>
                                 <input
                                     class="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700/50 dark:text-white transition-colors"
-                                    type="email" id="emailaddress" name="email" value="admin@example.com" required
+                                    type="email" id="emailaddress" name="email"
+                                    value="{{ old('email', 'admin@example.com') }}" required
                                     placeholder="Enter your email">
                             </div>
 
-                            <div class="mb-6">
+                            <div class="mb-4">
                                 <div class="flex justify-between items-center mb-2">
                                     <label for="password"
                                         class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
@@ -235,9 +244,10 @@
                                 </div>
 
                                 <div class="relative flex items-center">
-                                    <input type="password" id="password_input" name="password" value="password"
+                                    <input type="password" id="password_input" name="password"
+                                        value="{{ old('password', 'password') }}"
                                         class="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700/50 dark:text-white transition-colors pr-12"
-                                        placeholder="Enter your password">
+                                        required placeholder="Enter your password">
                                     <button type="button" id="password_toggle"
                                         class="absolute right-0 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
                                         <i id="password_toggle_icon" class="ri-eye-line text-lg"></i>
@@ -245,11 +255,12 @@
                                 </div>
                             </div>
 
-                            <div class="mb-6">
+                            <div class="mb-2">
                                 <div class="flex items-center">
                                     <input type="checkbox"
                                         class="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                        id="checkbox-signin" checked>
+                                        id="checkbox-signin" name="remember" checked
+                                        {{ old('remember') ? 'checked' : '' }}>
                                     <label class="ms-3 text-sm text-gray-600 dark:text-gray-400"
                                         for="checkbox-signin">Remember me</label>
                                 </div>
@@ -267,7 +278,7 @@
                         <div class="text-center mt-6">
                             <p class="text-gray-500 dark:text-gray-400 text-sm">
                                 Don't have an account?
-                                <a href="{{ route('second', ['auth', 'register']) }}"
+                                <a href="{{ route('register') }}"
                                     class="text-emerald-600 dark:text-emerald-400 font-semibold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors ml-1">
                                     Create Account
                                 </a>

@@ -1,80 +1,78 @@
-@extends('layouts.vertical', ['title' => 'Google', 'subTitle' => 'Maps', 'pageTitle' => 'Google' ])
+@extends('layouts.app', ['title' => 'Google', 'subTitle' => 'Maps', 'pageTitle' => 'Google'])
 
 @section('content')
+    <div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
 
-<div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
-
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Basic Example</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="gmaps-basic" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Basic Example</h4>
+            </div>
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="gmaps-basic" class="gmaps"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Markers Google Map</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="gmaps-markers" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Markers Google Map</h4>
+            </div>
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="gmaps-markers" class="gmaps"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Street View Panoramas Google Map</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="panorama" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Street View Panoramas Google Map</h4>
+            </div>
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="panorama" class="gmaps"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Google Map Types</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="gmaps-types" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Google Map Types</h4>
+            </div>
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="gmaps-types" class="gmaps"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Ultra Light With Labels</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="ultra-light" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Ultra Light With Labels</h4>
+            </div>
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="ultra-light" class="gmaps"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Dark</h4>
-        </div>
-        <div class="p-6">
-            <div class="mb-3">
-                <div id="dark" class="gmaps"></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Dark</h4>
             </div>
-        </div>
-    </div> <!-- end card -->
+            <div class="p-6">
+                <div class="mb-3">
+                    <div id="dark" class="gmaps"></div>
+                </div>
+            </div>
+        </div> <!-- end card -->
 
-</div><!-- end grid-->
-
+    </div><!-- end grid-->
 @endsection
 
 @section('script')
-@vite(['resources/js/pages/maps-google.js'])
-<script src="http://maps.google.com/maps/api/js"></script>
+    @vite(['resources/js/pages/maps-google.js'])
+    <script src="http://maps.google.com/maps/api/js"></script>
 @endsection
