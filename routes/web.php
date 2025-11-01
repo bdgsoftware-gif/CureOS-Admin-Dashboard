@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\DashboardController;
 
+// Public Route
+Route::view('/frontend-home', 'frontend.pages.home');
 // Debug route to check session
 Route::get('/debug-session', function () {
     return [
