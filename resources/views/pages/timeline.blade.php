@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Timeline', 'subTitle' => 'Pages', 'pageTitle' => 'Timeline'])
+@extends('layouts.app', ['title' => 'Timeline', 'subTitle' => 'Pages', 'pageTitle' => 'Timeline'])
 
 @section('content')
     <div class="relative space-y-12 pb-6">

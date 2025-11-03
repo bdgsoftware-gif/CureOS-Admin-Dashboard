@@ -8,10 +8,11 @@
 
 </head>
 
-<body class="relative flex flex-col">
+<body class="relative flex flex-col h-full min-h-screen overflow-y-auto">
 
     <!-- Svg Background -->
-    <div class="absolute inset-0 h-screen w-screen">
+    <div class="absolute inset-0 w-full h-full">
+        {{-- here svg will work as background, will put manually --}}
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svgjs="http://svgjs.com/svgjs" width="100%" height="100%" preserveAspectRatio="none"
             viewBox="0 0 1920 1028">
@@ -181,87 +182,149 @@
         </svg>
     </div>
 
-    <!-- Login Card -->
-    <div class="relative flex flex-col items-center justify-center h-screen">
-        <div class="flex justify-center">
-            <div class="max-w-md px-4 mx-auto">
-                <div class="card overflow-hidden">
+    <!-- Register Card -->
+    <div class="relative flex flex-col items-center justify-center flex-grow py-4 overflow-hidden">
+        <div class="flex justify-center w-full">
+            <div class="w-full max-w-md px-4 mx-auto my-4">
+                <div
+                    class="card overflow-hidden rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
 
                     <!-- Logo -->
-                    <div class="p-9 bg-primary">
+                    <div class="p-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-center">
                         <a href="{{ route('any', 'index') }}" class="flex justify-center">
-                            <img src="/images/logo.png" alt="logo" class="h-6">
+                            <img src="/images/logo.png" alt="logo"
+                                class="h-16 block dark:hidden filter brightness-0 invert">
+                            <img src="/images/logo-dark.png" alt="logo" class="h-16 hidden dark:block">
                         </a>
                     </div>
 
-                    <div class="p-9">
-                        <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Free Sign Up
-                            </h4>
-                            <p class="text-gray-400 mb-9">Don't have an account? Create your account, it takes less
-                                than a minute.</p>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Create Account</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                                Create your account, it takes less than a minute
+                            </p>
                         </div>
 
-                        <form action="#">
+                        <form method="POST" action="{{ route('register') }}" autocomplete="off">
+                            @csrf
 
-                            <div class="mb-6 space-y-2">
-                                <label for="fullname" class="font-semibold text-gray-500">Full Name</label>
-                                <input class="form-input" type="email" id="fullname" required=""
+                            @if (sizeof($errors) > 0)
+                                @foreach ($errors->all() as $error)
+                                    <div
+                                        class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                        <p class="text-red-600 dark:text-red-400 text-sm">{{ $error }}</p>
+                                    </div>
+                                @endforeach
+                            @endif
+
+                            <div class="mb-4">
+                                <label for="fullname"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full
+                                    Name</label>
+                                <input
+                                    class="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700/50 dark:text-white transition-colors"
+                                    type="text" id="fullname" name="name" required autocomplete="off"
+                                    placeholder="Enter your full name">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="emailaddress"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email
+                                    Address</label>
+                                <input
+                                    class="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700/50 dark:text-white transition-colors"
+                                    type="email" id="emailaddress" name="email" required autocomplete="off"
                                     placeholder="Enter your email">
                             </div>
 
-                            <div class="mb-6 space-y-2">
-                                <label for="emailaddress" class="font-semibold text-gray-500">Email address</label>
-                                <input class="form-input" type="email" id="emailaddress" required=""
-                                    placeholder="Enter your email">
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="password"
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                                </div>
+
+                                <div class="relative flex items-center">
+                                    <input type="password" id="password_input" name="password"
+                                        class="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700/50 dark:text-white transition-colors pr-12"
+                                        required autocomplete="off" placeholder="Enter your password">
+                                    <button type="button" id="password_toggle"
+                                        class="absolute right-0 px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                                        <i id="password_toggle_icon" class="ri-eye-line text-lg"></i>
+                                    </button>
+                                </div>
                             </div>
 
-                            <div class="mb-6 space-y-2">
-                                <label for="password" class="font-semibold text-gray-500">Password</label>
+                            <div class="mb-2">
                                 <div class="flex items-center">
-                                    <input type="password" id="password" class="form-input rounded-e-none"
-                                        placeholder="Enter your password">
-                                    <span
-                                        class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i
-                                            class="ri-eye-line text-lg"></i></span>
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        id="checkbox-signin" checked required>
+                                    <label class="ms-3 text-sm text-gray-600 dark:text-gray-400"
+                                        for="checkbox-signin">I
+                                        accept <a href="javascript::void(0);"
+                                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline decoration-dashed underline-offset-4">Terms
+                                            and Conditions</a></label>
                                 </div>
                             </div>
 
                             <div class="mb-6">
-                                <div class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox rounded text-primary"
-                                        id="checkbox-signin">
-                                    <label class="ms-2 font-semibold text-gray-600" for="checkbox-signin">I accept <a
-                                            href="#" class="text-gray-500">Terms and Conditions</a></label>
-                                </div>
+                                <button
+                                    class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white py-3.5 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.02] focus:scale-[0.98]"
+                                    type="submit">
+                                    Sign Up
+                                </button>
                             </div>
-
-                            <div class="text-center mb-6">
-                                <button class="btn bg-primary text-white" type="submit"> Sign Up </button>
-                            </div>
-
                         </form>
-                    </div>
-                </div>
-                <!-- end card -->
 
-                <div class="text-center my-4">
-                    <p class="text-muted">Already have account? <a href="{{ route('second', ['auth', 'login']) }}"
-                            class="text-muted ms-1 link-offset-3 underline underline-offset-4"><b>Log In</b></a></p>
+                        <div class="text-center mt-6">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">
+                                Already have an account?
+                                <a href="{{ route('login') }}"
+                                    class="text-emerald-600 dark:text-emerald-400 font-semibold hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors ml-1">
+                                    Log In
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="absolute bottom-0 inset-x-0">
-        <p class="font-medium text-center p-6">
+    <!-- Enhanced footer -->
+    <footer class="relative z-10">
+        <p class="font-medium text-center p-4 text-sm text-gray-600 dark:text-gray-400">
             <script>
                 document.write(new Date().getFullYear())
-            </script> © CureOS - End Brackets
+            </script>
+            © CureOS - <a href="https://endbrackets.com/" target="_blank"
+                class="text-emerald-600 hover:text-emerald-700 transition-colors cursor-pointer">End Brackets</a>
         </p>
     </footer>
 
     @include('layouts.shared/footer-scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password_input');
+            const toggleButton = document.getElementById('password_toggle');
+            const toggleIcon = document.getElementById('password_toggle_icon');
+
+            toggleButton.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                if (type === 'password') {
+                    toggleIcon.classList.remove('ri-eye-off-line');
+                    toggleIcon.classList.add('ri-eye-line');
+                } else {
+                    toggleIcon.classList.remove('ri-eye-line');
+                    toggleIcon.classList.add('ri-eye-off-line');
+                }
+            });
+        });
+    </script>
 
 </body>
 

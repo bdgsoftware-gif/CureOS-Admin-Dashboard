@@ -1,49 +1,48 @@
-@extends('layouts.vertical', ['title' => 'Email Inbox' , 'subTitle' => 'Apps', 'pageTitle' => 'Email Inbox'])
+@extends('layouts.app', ['title' => 'Email Inbox', 'subTitle' => 'Apps', 'pageTitle' => 'Email Inbox'])
 
 @section('css')
     @vite(['node_modules/quill/dist/quill.core.css', 'node_modules/quill/dist/quill.bubble.css', 'node_modules/quill/dist/quill.snow.css'])
 @endsection
 
 @section('content')
-
     <div class="lg:flex w-full gap-2">
         <!-- Email Sidebar Menu -->
         <div id="email-sidebar"
-             class="lg:block hidden inset-y-0 start-0 transform fc-offcanvas-open:translate-x-0 lg:z-0 z-50 fixed lg:static lg:translate-x-0 -translate-x-full lg:rtl:-translate-x-0 rtl:translate-x-full transition-all duration-300"
-             tabindex="-1">
+            class="lg:block hidden inset-y-0 start-0 transform fc-offcanvas-open:translate-x-0 lg:z-0 z-50 fixed lg:static lg:translate-x-0 -translate-x-full lg:rtl:-translate-x-0 rtl:translate-x-full transition-all duration-300"
+            tabindex="-1">
             <div class="card min-w-80 h-full min-h-full rounded-none lg:rounded-md">
                 <div data-simplebar class="h-full p-6">
                     <a href="javascript:void(0)" data-fc-target="default-modal" data-fc-type="modal" type="button"
-                       type="button" class="btn bg-danger inline-flex justify-center text-white w-full">
+                        type="button" class="btn bg-danger inline-flex justify-center text-white w-full">
                         Compose
                     </a>
 
                     <div class="mt-6">
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-bold text-danger"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-bold text-danger"><i
                                 class="ri-inbox-line me-2"></i>Inbox<span
                                 class="py-0.5 px-1.5 text-xs rounded bg-danger/10 text-danger ms-auto">7</span></a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-star-line me-2"></i>Starred</a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-time-line me-2"></i>Snoozed</a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-article-line me-2"></i>Draft<span
                                 class="py-0.5 px-1.5 text-xs rounded bg-info/10 text-info ms-auto">32</span></a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-mail-send-line me-2"></i>Sent Mail</a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-delete-bin-line me-2"></i>Trash</a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-price-tag-3-line me-2"></i>Important</a>
                         <a href="javascript: void(0);"
-                           class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
+                            class="py-2 px-1.5 text-sm flex items-center font-medium text-gray-400 hover:text-gray-800 dark:hover:text-white"><i
                                 class="ri-alert-line me-2"></i>Spam</a>
                     </div>
 
@@ -51,32 +50,32 @@
                         <h6 class="uppercase">Labels</h6>
                         <div class="mt-4">
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-info me-2"></i>
                                 <span>Updates</span>
                             </a>
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-warning me-2"></i>
                                 <span>Friends</span>
                             </a>
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-success me-2"></i>
                                 <span>Family</span>
                             </a>
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-primary me-2"></i>
                                 <span>Social</span>
                             </a>
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-danger me-2"></i>
                                 <span>Important</span>
                             </a>
                             <a href="javascript: void(0);"
-                               class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
+                                class="py-2 px-1.5 text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 dark:hover:text-white">
                                 <i class="ri-checkbox-blank-circle-fill text-sm text-secondary me-2"></i>
                                 <span>Promotions</span>
                             </a>
@@ -89,7 +88,7 @@
                         <h6 class="text-uppercase mt-3">Storage</h6>
                         <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700 mt-4">
                             <div class="flex flex-col justify-center overflow-hidden bg-success" role="progressbar"
-                                 style="width: 46%" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></div>
+                                style="width: 46%" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="text-gray-500 mt-4 text-xs">7.02 GB (46%) of 15 GB used</p>
                     </div>
@@ -102,7 +101,7 @@
             <div class="flex flex-wrap items-center gap-2">
                 <div class="lg:hidden block">
                     <button data-fc-target="email-sidebar" data-fc-type="offcanvas"
-                            class="inline-flex items-center justify-center text-gray-700 border border-gray-300 rounded shadow hover:bg-slate-100 dark:text-gray-400 hover:dark:bg-gray-800 dark:border-gray-700 transition h-9 w-9 duration-100">
+                        class="inline-flex items-center justify-center text-gray-700 border border-gray-300 rounded shadow hover:bg-slate-100 dark:text-gray-400 hover:dark:bg-gray-800 dark:border-gray-700 transition h-9 w-9 duration-100">
                         <div class="ri-menu-2-fill text-lg"></div>
                     </button>
                 </div>
@@ -116,22 +115,22 @@
                 </div>
                 <div class="relative rounded inline-flex align-middle">
                     <button type="button" class="btn bg-secondary/90 text-white rounded hover:bg-secondary"
-                            data-fc-type="dropdown">
+                        data-fc-type="dropdown">
                         <i class="ri-folder-2-line text-base"></i>
                         <i class="ri-arrow-down-s-line"></i>
                     </button>
                     <div
                         class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                        <span
-                            class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">Move to:</span>
+                        <span class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">Move
+                            to:</span>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Social</a>
+                            href="javascript: void(0);">Social</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Promotions</a>
+                            href="javascript: void(0);">Promotions</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Updates</a>
+                            href="javascript: void(0);">Updates</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Forums</a>
+                            href="javascript: void(0);">Forums</a>
                     </div>
                 </div>
                 <div class="relative rounded inline-flex align-middle">
@@ -141,16 +140,16 @@
                     </button>
                     <div
                         class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                        <span
-                            class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">Label as:</span>
+                        <span class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">Label
+                            as:</span>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Updates</a>
+                            href="javascript: void(0);">Updates</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Social</a>
+                            href="javascript: void(0);">Social</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Promotions</a>
+                            href="javascript: void(0);">Promotions</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Forums</a>
+                            href="javascript: void(0);">Forums</a>
                     </div>
                 </div>
                 <div class="relative rounded inline-flex align-middle">
@@ -160,15 +159,16 @@
                     </button>
                     <div
                         class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                        <span class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">More Options :</span>
+                        <span class="flex items-center py-1.5 px-3.5 text-sm text-gray-500 dark:text-gray-400">More Options
+                            :</span>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Mark as Unread</a>
+                            href="javascript: void(0);">Mark as Unread</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Add to Tasks</a>
+                            href="javascript: void(0);">Add to Tasks</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Add Star</a>
+                            href="javascript: void(0);">Add Star</a>
                         <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                           href="javascript: void(0);">Mute</a>
+                            href="javascript: void(0);">Mute</a>
                     </div>
                 </div>
             </div>
@@ -237,7 +237,9 @@
                             <div class="2xl:col-span-8 xl:col-span-6 sm:col-span-5 hidden sm:block">
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">OMochila Beta: Subscription Confirmed
-                                        &nbsp;–&nbsp; <span>You've been confirmed! Welcome to the ruling class of the inbox. For your records, here is a copy of the information you submitted to us...</span></a>
+                                        &nbsp;–&nbsp; <span>You've been confirmed! Welcome to the ruling class of the inbox.
+                                            For your records, here is a copy of the information you submitted to
+                                            us...</span></a>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +284,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-800 dark:text-gray-200">
                                         Sveriges Hetaste sommarjobb &nbsp;&ndash;&nbsp;
-                                        <span>Hej Nicklas Sandell! Vi vill bjuda in dig till "First tour 2014", ett rekryteringsevent som erbjuder jobb på 16 semesterorter iSverige.</span>
+                                        <span>Hej Nicklas Sandell! Vi vill bjuda in dig till "First tour 2014", ett
+                                            rekryteringsevent som erbjuder jobb på 16 semesterorter iSverige.</span>
                                     </a>
                                 </div>
                             </div>
@@ -374,7 +377,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Off on Thursday &nbsp;&ndash;&nbsp;
-                                        <span>Eff that place, you might as well stay here with us instead! Sent from my iPhone 4 &gt; 4 mar 2014 at 5:55 pm</span>
+                                        <span>Eff that place, you might as well stay here with us instead! Sent from my
+                                            iPhone 4 &gt; 4 mar 2014 at 5:55 pm</span>
                                     </a>
                                 </div>
                             </div>
@@ -420,7 +424,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         This Week's Top Stories &nbsp;&ndash;&nbsp;
-                                        <span>Our top pick for you on Medium this week The Man Who Destroyed America’s Ego</span>
+                                        <span>Our top pick for you on Medium this week The Man Who Destroyed America’s
+                                            Ego</span>
                                     </a>
                                 </div>
                             </div>
@@ -466,7 +471,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Montly High-Res Photos &nbsp;&ndash;&nbsp;
-                                        <span>To create this month's pack, we hosted a party with local musician Jared Mahone here in Columbus, Ohio.</span>
+                                        <span>To create this month's pack, we hosted a party with local musician Jared
+                                            Mahone here in Columbus, Ohio.</span>
                                     </a>
                                 </div>
                             </div>
@@ -512,7 +518,9 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Weekend on Revibe &nbsp;&ndash;&nbsp;
-                                        <span>Today's Friday and we thought maybe you want some music inspiration for the weekend. Here are some trending tracks and playlists we think you should give a listen!</span>
+                                        <span>Today's Friday and we thought maybe you want some music inspiration for the
+                                            weekend. Here are some trending tracks and playlists we think you should give a
+                                            listen!</span>
                                     </a>
                                 </div>
                             </div>
@@ -604,7 +612,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Task assigned: Clone ARP's website
-                                        &nbsp;&ndash;&nbsp; <span>You have been assigned a task by Alex@Work on the board Web.</span>
+                                        &nbsp;&ndash;&nbsp; <span>You have been assigned a task by Alex@Work on the board
+                                            Web.</span>
                                     </a>
                                 </div>
                             </div>
@@ -788,7 +797,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         1 new items in your Stackexchange inbox&nbsp;&ndash;&nbsp;
-                                        <span>The following items were added to your Stack Exchange global inbox since you last checked it.</span>
+                                        <span>The following items were added to your Stack Exchange global inbox since you
+                                            last checked it.</span>
                                     </a>
                                 </div>
                             </div>
@@ -834,7 +844,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         You can now use your storage in Google
-                                        Drive &nbsp;&ndash;&nbsp; <span>Hey Nicklas Sandell! Thank you for purchasing extra storage space in Google Drive.</span>
+                                        Drive &nbsp;&ndash;&nbsp; <span>Hey Nicklas Sandell! Thank you for purchasing extra
+                                            storage space in Google Drive.</span>
                                     </a>
                                 </div>
                             </div>
@@ -880,7 +891,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-800 dark:text-gray-200">
                                         Train/Bus &nbsp;&ndash;&nbsp;
-                                        <span>Yes ok, great! I'm not stuck in Stockholm anymore, we're making progress.</span>
+                                        <span>Yes ok, great! I'm not stuck in Stockholm anymore, we're making
+                                            progress.</span>
                                     </a>
                                 </div>
                             </div>
@@ -926,7 +938,8 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Hello &nbsp;&ndash;&nbsp;
-                                        <span>Trip home from Colombo has been arranged, then Jenna will come get me from Stockholm. :)</span>
+                                        <span>Trip home from Colombo has been arranged, then Jenna will come get me from
+                                            Stockholm. :)</span>
                                     </a>
                                 </div>
                             </div>
@@ -971,8 +984,10 @@
                             <div class="2xl:col-span-8 xl:col-span-6 sm:col-span-5 hidden sm:block">
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
-                                        Since you asked... and i'm inconceivably bored at the train station &nbsp;&ndash;&nbsp;
-                                        <span>Alright thanks. I'll have to re-book that somehow, i'll get back to you.</span>
+                                        Since you asked... and i'm inconceivably bored at the train station
+                                        &nbsp;&ndash;&nbsp;
+                                        <span>Alright thanks. I'll have to re-book that somehow, i'll get back to
+                                            you.</span>
                                     </a>
                                 </div>
                             </div>
@@ -1018,7 +1033,9 @@
                                 <div class="truncate overflow-hidden">
                                     <a href="#" class="text-gray-500">
                                         Last pic over my village &nbsp;&ndash;&nbsp;
-                                        <span>Yeah i'd like that! Do you remember the video you showed me of your train ride between Colombo and Kandy? The one with the mountain view? I would love to see that one again!</span>
+                                        <span>Yeah i'd like that! Do you remember the video you showed me of your train ride
+                                            between Colombo and Kandy? The one with the mountain view? I would love to see
+                                            that one again!</span>
                                     </a>
                                 </div>
                             </div>
@@ -1064,7 +1081,7 @@
 
     <!-- Compose Modal -->
     <div id="default-modal"
-         class="w-full h-full mt-5 fixed top-0 start-0 z-50 transition-all duration-500 fc-modal hidden">
+        class="w-full h-full mt-5 fixed top-0 start-0 z-50 transition-all duration-500 fc-modal hidden">
         <div
             class="fc-modal-open:opacity-100 duration-500 opacity-0 overflow-hidden ease-in-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto flex flex-col bg-white shadow-sm rounded dark:bg-gray-800">
             <div class="flex justify-between items-center p-4 bg-primary ">
@@ -1104,13 +1121,12 @@
                             class="ri-send-plane-2-line me-1"></i> Send Message
                     </button>
                     <button type="button" class="btn bg-light text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                            data-fc-dismiss>Cancel
+                        data-fc-dismiss>Cancel
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('script')
