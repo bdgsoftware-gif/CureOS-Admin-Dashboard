@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('consultation_id')->constrained('consultations')->onDelete('cascade');
+            $table->enum('payment_status', ['pending', 'paid', 'partial', 'cancelled'])->default('pending');
             $table->decimal('total_amount', 10, 2);
-            $table->enum('payment_status', ['paid', 'unpaid'])->default('unpaid');
             $table->string('pdf_path')->nullable();
             $table->softDeletes();
             $table->timestamps();

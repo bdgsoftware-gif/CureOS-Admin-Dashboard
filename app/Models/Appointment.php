@@ -17,6 +17,11 @@ class Appointment extends Model
         'status',
     ];
 
+    protected $casts = [
+        'appointment_time' => 'datetime',
+        'status' => 'string', // CONSIDER USING ENUM
+    ];
+
     // Relationships
     public function patient()
     {
@@ -31,5 +36,38 @@ class Appointment extends Model
     public function consultation()
     {
         return $this->hasOne(Consultation::class);
+    }
+
+    // ADD SCOPES FOR COMMON QUERIES
+    public function scopeUpcoming($query)
+    {
+        return $query->where('appointment_time', '>=', now())
+            ->where('status', 'scheduled');
+    }
+
+    public function scopeCompleted($query)
+    {
+        return $query->where('status', 'completed');
+    }
+
+    public function scopeForDoctor($query, $doctorId)
+    {
+        return $query->where('doctor_id', $doctorId);
+    }
+
+    public function scopeForPatient($query, $patientId)
+    {
+        return $query->where('patient_id', $patientId);
+    }
+
+    // ADD CONVENIENCE METHODS
+    public function hasConsultation()
+    {
+        return $this->consultation()->exists();
+    }
+
+    public function isUpcoming()
+    {
+        return $this->appointment_time >= now() && $this->status === 'scheduled';
     }
 }

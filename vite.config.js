@@ -1,5 +1,5 @@
-import {defineConfig} from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
     plugins: [
@@ -17,13 +17,11 @@ export default defineConfig({
                 "node_modules/gridjs/dist/theme/mermaid.min.css",
                 "node_modules/dropzone/dist/dropzone.css",
                 "node_modules/swiper/swiper-bundle.min.css",
-                "node_modules/jsvectormap/dist/css/jsvectormap.min.css",
                 "node_modules/tippy.js/dist/tippy.css",
                 "node_modules/plyr/dist/plyr.css",
                 "node_modules/quill/dist/quill.core.css",
                 "node_modules/quill/dist/quill.bubble.css",
                 "node_modules/quill/dist/quill.snow.css",
-                "node_modules/gridjs/dist/theme/mermaid.min.css",
 
                 //js
                 "resources/js/config.js",
@@ -32,7 +30,6 @@ export default defineConfig({
                 "resources/js/pages/apps-calendar.js",
                 "resources/js/pages/dashboard.js",
                 "resources/js/pages/dashboard-analytics.js",
-                "resources/js/pages/apps-inbox.js",
                 "resources/js/pages/apps-inbox.js",
                 "resources/js/pages/apps-kanban.js",
                 "resources/js/pages/apps-tasks.js",

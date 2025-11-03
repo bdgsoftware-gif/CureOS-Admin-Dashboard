@@ -17,6 +17,11 @@ class Invoice extends Model
         'pdf_path',
     ];
 
+    protected $casts = [
+        'total_amount' => 'decimal:2',
+        'payment_status' => 'string', // CONSIDER USING ENUM
+    ];
+
     // Relationships
     public function consultation()
     {
@@ -26,5 +31,16 @@ class Invoice extends Model
     public function items()
     {
         return $this->hasMany(InvoiceItem::class);
+    }
+
+    // ADD SCOPE FOR PAYMENT STATUS
+    public function scopePaid($query)
+    {
+        return $query->where('payment_status', 'paid');
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('payment_status', 'pending');
     }
 }
