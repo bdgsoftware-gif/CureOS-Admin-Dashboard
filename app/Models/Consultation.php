@@ -12,6 +12,10 @@ class Consultation extends Model
 
     protected $fillable = ['appointment_id', 'visit_notes'];
 
+    protected $casts = [
+        'visit_notes' => 'string',
+    ];
+
     // Relationships
     public function appointment()
     {
@@ -26,5 +30,16 @@ class Consultation extends Model
     public function invoice()
     {
         return $this->hasOne(Invoice::class);
+    }
+
+    // ADD CONVENIENCE METHODS
+    public function hasPrescription()
+    {
+        return $this->prescription()->exists();
+    }
+
+    public function hasInvoice()
+    {
+        return $this->invoice()->exists();
     }
 }

@@ -17,7 +17,7 @@ class InvoiceSeeder extends Seeder
             $invoice = Invoice::create([
                 'consultation_id' => $consultation->id,
                 'total_amount' => 150.00,
-                'payment_status' => 'unpaid',
+                'payment_status' => 'pending',
                 'pdf_path' => 'invoices/sample.pdf',
             ]);
 

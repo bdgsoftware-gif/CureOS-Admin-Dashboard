@@ -5,18 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse; // ADD IMPORT
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\View\View; // ADD IMPORT
 
 class AuthenticatedSessionController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('auth.login');
     }
 
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
         try {
             $request->authenticate();
@@ -24,7 +24,6 @@ class AuthenticatedSessionController extends Controller
 
             flash_success('Welcome back, ' . Auth::user()->name . '!');
 
-            // This works reliably
             return redirect('/dashboard');
         } catch (\Illuminate\Validation\ValidationException $e) {
             flash_error('Invalid login credentials.');
@@ -32,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         $userName = Auth::user()->name;
 
@@ -42,7 +41,6 @@ class AuthenticatedSessionController extends Controller
 
         flash_success('Goodbye, ' . $userName . '! You have been logged out successfully.');
 
-        // Simple redirect for logout too
         return redirect('/login');
     }
 }

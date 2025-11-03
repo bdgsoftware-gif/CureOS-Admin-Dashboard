@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
                 'currentUser' => $user,
                 'userName'    => $user?->name,
                 'userEmail'   => $user?->email,
-                'userRoles'   => $user?->roles->pluck('role_name') ?? collect(), 
+                'userRoles'   => $user?->roles->pluck('name') ?? collect(), 
             ]);
         });
     }

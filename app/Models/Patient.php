@@ -11,7 +11,17 @@ class Patient extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'phone', 'email', 'dob', 'gender', 'address', 'created_by',
+        'name',
+        'phone',
+        'email',
+        'dob',
+        'gender',
+        'address',
+        'created_by',
+    ];
+
+    protected $casts = [
+        'dob' => 'date', // ADD CAST FOR DATE
     ];
 
     // Relationships
@@ -23,5 +33,16 @@ class Patient extends Model
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function consultations()
+    {
+        return $this->hasManyThrough(Consultation::class, Appointment::class);
+    }
+
+    // ADD ACCESSOR FOR AGE
+    public function getAgeAttribute()
+    {
+        return $this->dob ? $this->dob->age : null;
     }
 }

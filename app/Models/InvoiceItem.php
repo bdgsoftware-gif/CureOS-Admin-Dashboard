@@ -11,6 +11,10 @@ class InvoiceItem extends Model
 
     protected $fillable = ['invoice_id', 'service_description', 'fee'];
 
+    protected $casts = [
+        'fee' => 'decimal:2', // ADD CAST FOR MONEY
+    ];
+
     // Relationships
     public function invoice()
     {

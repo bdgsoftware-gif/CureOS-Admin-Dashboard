@@ -25,33 +25,293 @@
         <ul class="menu" data-fc-type="accordion">
             <li class="menu-title">Navigation</li>
 
+            <!-- Dashboard Section - All Roles -->
             <li class="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                <a href="{{ route('dashboard') }}" class="menu-link">
                     <span class="menu-icon">
-                        <i class="ri-home-4-line"></i>
+                        <i class="ri-dashboard-3-line"></i>
                     </span>
-                    <span class="menu-text"> Dashboard </span>
-                    <span class="badge bg-success rounded-full">2</span>
+                    <span class="menu-text">Dashboard</span>
                 </a>
-
-                <ul class="sub-menu hidden">
-                    <li class="menu-item">
-                        <a href="{{ route('dashboard') }}" class="menu-link">
-                            <span class="menu-text">Admin</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('any', 'dashboard-analytics') }}" class="menu-link">
-                            <span class="menu-text">Analytics</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('any', 'index') }}" class="menu-link">
-                            <span class="menu-text">Ecommerce</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
+
+            <!-- Admin Only Menu Items -->
+            @role('admin')
+                <li class="menu-title mt-4">Administration</li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-user-settings-line"></i>
+                        </span>
+                        <span class="menu-text">User Management</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.users.index') }}" class="menu-link">
+                                <span class="menu-text">Manage Users</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.users.create') }}" class="menu-link">
+                                <span class="menu-text">Create User</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.roles.index') }}" class="menu-link">
+                                <span class="menu-text">Role Management</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-bar-chart-line"></i>
+                        </span>
+                        <span class="menu-text">Reports & Analytics</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.reports.appointments') }}" class="menu-link">
+                                <span class="menu-text">Appointment Reports</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.reports.financial') }}" class="menu-link">
+                                <span class="menu-text">Financial Reports</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.reports.export') }}" class="menu-link">
+                                <span class="menu-text">Export Data (CSV)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('admin.system') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-settings-3-line"></i>
+                        </span>
+                        <span class="menu-text">System Settings</span>
+                    </a>
+                </li>
+            @endrole
+
+            <!-- Patient Management - Staff & Admin -->
+            @anyrole('admin|staff')
+                <li class="menu-title mt-4">Patient Management</li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-user-add-line"></i>
+                        </span>
+                        <span class="menu-text">Patients</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('patients.index') }}" class="menu-link">
+                                <span class="menu-text">All Patients</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('patients.create') }}" class="menu-link">
+                                <span class="menu-text">Register Patient</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('patients.search') }}" class="menu-link">
+                                <span class="menu-text">Search Patients</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endanyrole
+
+            <!-- Appointment Management - Staff, Doctor & Admin -->
+            @anyrole('admin|staff|doctor')
+                <li class="menu-title mt-4">Appointments</li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-calendar-2-line"></i>
+                        </span>
+                        <span class="menu-text">Appointments</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        @role('doctor')
+                            <li class="menu-item">
+                                <a href="{{ route('doctor.appointments.today') }}" class="menu-link">
+                                    <span class="menu-text">Today's Schedule</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('doctor.appointments.upcoming') }}" class="menu-link">
+                                    <span class="menu-text">My Appointments</span>
+                                </a>
+                            </li>
+                        @endrole
+
+                        @anyrole('admin|staff')
+                            <li class="menu-item">
+                                <a href="{{ route('appointments.index') }}" class="menu-link">
+                                    <span class="menu-text">All Appointments</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('appointments.create') }}" class="menu-link">
+                                    <span class="menu-text">Create Appointment</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('appointments.calendar') }}" class="menu-link">
+                                    <span class="menu-text">Calendar View</span>
+                                </a>
+                            </li>
+                        @endanyrole
+                    </ul>
+                </li>
+            @endanyrole
+
+            <!-- Medical Management - Doctor & Admin -->
+            @anyrole('admin|doctor')
+                <li class="menu-title mt-4">Medical Management</li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-file-text-line"></i>
+                        </span>
+                        <span class="menu-text">Consultations</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('consultations.index') }}" class="menu-link">
+                                <span class="menu-text">All Consultations</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('consultations.today') }}" class="menu-link">
+                                <span class="menu-text">Today's Consultations</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-medicine-bottle-line"></i>
+                        </span>
+                        <span class="menu-text">Prescriptions</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('prescriptions.index') }}" class="menu-link">
+                                <span class="menu-text">All Prescriptions</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('prescriptions.create') }}" class="menu-link">
+                                <span class="menu-text">Create Prescription</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endanyrole
+
+            <!-- Billing & Invoices - Staff & Admin -->
+            @anyrole('admin|staff')
+                <li class="menu-title mt-4">Billing & Finance</li>
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-bill-line"></i>
+                        </span>
+                        <span class="menu-text">Invoices</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="sub-menu hidden">
+                        <li class="menu-item">
+                            <a href="{{ route('invoices.index') }}" class="menu-link">
+                                <span class="menu-text">All Invoices</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('invoices.create') }}" class="menu-link">
+                                <span class="menu-text">Create Invoice</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('invoices.pending') }}" class="menu-link">
+                                <span class="menu-text">Pending Payments</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('billing.reports') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-money-dollar-circle-line"></i>
+                        </span>
+                        <span class="menu-text">Financial Reports</span>
+                    </a>
+                </li>
+            @endanyrole
+
+            <!-- Patient Portal Menu (Patient Role) -->
+            @role('patient')
+                <li class="menu-title mt-4">My Portal</li>
+
+                <li class="menu-item">
+                    <a href="{{ route('patient.appointments') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-calendar-2-line"></i>
+                        </span>
+                        <span class="menu-text">My Appointments</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('patient.prescriptions') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-medicine-bottle-line"></i>
+                        </span>
+                        <span class="menu-text">My Prescriptions</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('patient.invoices') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-bill-line"></i>
+                        </span>
+                        <span class="menu-text">My Invoices</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('patient.profile') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ri-profile-line"></i>
+                        </span>
+                        <span class="menu-text">My Profile</span>
+                    </a>
+                </li>
+            @endrole
 
             <li class="menu-title">Apps</li>
 

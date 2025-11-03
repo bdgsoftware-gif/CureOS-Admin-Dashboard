@@ -10,21 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('roles', function (Blueprint $table) {
-        $table->id();
-        $table->string('name')->unique(); // admin, doctor, staff, patient
-        $table->string('display_name');
-        $table->text('description')->nullable();
-        $table->timestamps();
+{
+    Schema::create('permission_role', function (Blueprint $table) {
+        $table->foreignId('permission_id')->constrained()->onDelete('cascade');
+        $table->foreignId('role_id')->constrained()->onDelete('cascade');
+        $table->primary(['permission_id', 'role_id']);
     });
-    }
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('permissions_role');
     }
 };
